@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Mamaloe", "Mamaloe\", "{AD83800B-0BCB-43EE-B02D-51D5B5BCB18B}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_57516"
+		Debug.AspNetCompiler.PhysicalPath = "Mamaloe\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57516\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_57516"
+		Release.AspNetCompiler.PhysicalPath = "Mamaloe\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57516\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "57516"
+		SlnRelativePath = "Mamaloe\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD83800B-0BCB-43EE-B02D-51D5B5BCB18B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD83800B-0BCB-43EE-B02D-51D5B5BCB18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BF380C6-ABDB-44AE-B866-9A309766B167}
+	EndGlobalSection
+EndGlobal

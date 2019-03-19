@@ -1,0 +1,85 @@
+﻿@using WebMatrix.Data;
+@{
+
+    Validation.RequireField("voornaam", "Voornaam is verplicht");
+    Validation.RequireField("achternaam", "Achternaam is verplicht");
+    Validation.RequireField("email", "Email is verplicht");
+    Validation.RequireField("telefoonnummer", "Telefoonnummer is verplicht");
+    Validation.RequireField("straat", "Straat is verplicht");
+    Validation.RequireField("huisnummer", "Huisnummer is verplicht");
+    Validation.RequireField("postcode", "Postcode is verplicht");
+    Validation.RequireField("woonplaats", "Plaats is verplicht");
+    Validation.RequireField("land", "Land is verplicht");
+
+    var voornaam = "";
+    var achternaam = "";
+    var email = "";
+    var telefoonnummer = "";
+    var straat = "";
+    var huisnummer = "";
+    var toevoeging = "";
+    var postcode = "";
+    var woonplaats = "";
+    var land = "";
+
+    if (IsPost && Validation.IsValid())
+    {
+        voornaam = Request.Form["voornaam"];
+        achternaam = Request.Form["achternaam"];
+        email = Request.Form["email"];
+        telefoonnummer = Request.Form["telefoonnummer"];
+        straat = Request.Form["straat"];
+        huisnummer = Request.Form["huisnummer"];
+        toevoeging = Request.Form["toevoeging"];
+        postcode = Request.Form["postcode"];
+        woonplaats = Request.Form["woonplaats"];
+        land = Request.Form["land"];
+
+
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Mamaloe.mdf;Integrated Security=True";
+
+        string provider = "System.Data.SqlClient";
+
+        Database db = Database.OpenConnectionString(connectionString, provider);
+        var insertCommand = "INSERT INTO Reservering(voornaam, achternaam, email, telefoonnummer, straat, huisnummer, toevoeging, postcode, woonplaats, land) Values(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)";
+        db.Execute(insertCommand, voornaam, achternaam, email, telefoonnummer, straat, huisnummer, toevoeging, postcode, woonplaats, land);
+
+        Response.Redirect("~/ReservationComplete.cshtml");
+    }
+}
+<h3>Persoonlijke gegevens</h3>
+<form method="post">
+    <div>Voornaam:</div>
+    <input type="text" name="voornaam" /><br/>
+    @Html.ValidationMessage("voornaam")
+    <div>Achternaam:</div>
+    <input type="text" name="achternaam" /><br/>
+    @Html.ValidationMessage("achternaam")
+    <div>Email:</div>
+    <input type="text" name="email" /><br/>
+    @Html.ValidationMessage("email")
+    <div>Telefoonnummer:</div>
+    <input type="text" name="telefoonnummer" /><br/>
+    @Html.ValidationMessage("telefoonnummer")
+    <div>Straat:</div>
+    <input type="text" name="straat" /><br/>
+    @Html.ValidationMessage("straat")
+    <div>Huisnummer:</div>
+    <input type="text" name="huisnummer" /><br/>
+    @Html.ValidationMessage("huisnummer")
+    <div>Toevoeging:</div>
+    <input type="text" name="toevoeging" /><br/>
+    <div>Postcode:</div>
+    <input type="text" name="postcode" /><br/>
+    @Html.ValidationMessage("postcode")
+    <div>Woonplaats:</div>
+    <input type="text" name="woonplaats" /><br/>
+    @Html.ValidationMessage("woonplaats")
+    <br />
+    <div>Land:</div>
+    <select name="land">
+        <option value="Nederland">Nederland</option>
+        <option value="Duitsland">Duitsland</option>
+    </select>
+    <input type="submit" name="SubmitButton" value="Reserveren" />
+</form>
