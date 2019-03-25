@@ -10,6 +10,8 @@
     Validation.RequireField("postcode", "Postcode is verplicht");
     Validation.RequireField("woonplaats", "Plaats is verplicht");
     Validation.RequireField("land", "Land is verplicht");
+    Validation.RequireField("huisdier", "Huisdier wel/niet is verplicht");
+    Validation.RequireField("personen", "Aantal personen is verplicht");
 
     var voornaam = "";
     var tussenvoegsel = "";
@@ -21,6 +23,8 @@
     var postcode = "";
     var woonplaats = "";
     var land = "";
+    var huisdier = "";
+    var personen = "";
 
     if (IsPost && Validation.IsValid())
     {
@@ -34,6 +38,8 @@
         postcode = Request.Form["postcode"];
         woonplaats = Request.Form["woonplaats"];
         land = Request.Form["land"];
+        huisdier = Request.Form["huisdier"];
+        personen = Request.Form["personen"];
 
 
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Mamaloe.mdf;Integrated Security=True";
@@ -60,13 +66,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="wireframe.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" style=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" style=""></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous" style=""></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#datepicker1").datepicker();
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#datepicker2").datepicker();
+        });
+    </script>
 </head>
 
 <body class="bg-light">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md bg-warning navbar-light" >
         <div class="container">
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar13" style="">
                 <span class="navbar-toggler-icon"></span>
@@ -83,18 +108,12 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link">
-                        </a>
+                        <img src="images/netherlands-flag-round-icon-16.png">
                     </li>
+                    &nbsp;
+                    &nbsp;       
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-facebook fa-fw"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-slack fa-fw"></i>
-                        </a>
+                        <img src="images/germany-flag-round-icon-16.png" >
                     </li>
                 </ul>
             </div>
@@ -113,30 +132,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 order-md-2">
-                    <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Gegevens</span> </h4>
-                    <div class="row"></div>
-                    <div class="row"></div>
-                    <div class="row"></div>
-                    <div class="row"></div>
+                    <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Gegevens</span> </h4>  
                     <div class="row">
-                        <div class="col-md-12"></div>
-                    </div>
+                        <div id="datepicker2"></div>
+                    </div> <br />
                     <div class="row">
                         <div class="col-md-6">
-                            <h6 class="">Incheckdatum:</h6>
+                            <h6 class="">Incheckdatum:<input type="text" id="datepicker" class="form-control"></h6>
                         </div>
                         <div class="col-md-6"></div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <h6 class="">Uitcheckdatum:</h6>
+                            <h6 class="">Uitcheckdatum:<input type="text" id="datepicker1" class="form-control"></h6>
                         </div>
                         <div class="col-md-6"></div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Huisdier</button>
+                                <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"> Huisdier</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">Ja</a>
                                     <div class="dropdown-divider"></div>
@@ -147,7 +162,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Personen</button>
+                                <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"> Personen</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">1</a>
                                     <div class="dropdown-divider"></div>
@@ -162,6 +177,7 @@
                         <div class="col-md-6"></div>
                         <div class="col-md-6"></div>
                     </div>
+                    <br/>
                     <div class="row">
                         <div class="col-md-12">
                             <h5 class="">Totaal prijs:</h5>
@@ -247,13 +263,13 @@
                                     <div class="col-md-12">
                                         <div class="form-group row">
                                             <label class="col-2">Opmerking:</label>
-                                            <div class="col-10"><textarea class="form-control" name="opmerking" id="form35" rows="3" placeholder="Your message"></textarea></div>
+                                            <div class="col-10"><textarea class="form-control" name="opmerking" id="form35" rows="3" placeholder="Vul hier uw eventuele opmerking"></textarea></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-lg btn-block" name="SubmitButton"type="submit">Reserveer</button>
+                        <button class="btn btn-warning btn-lg btn-block" name="SubmitButton"type="submit">Reserveer</button>
                     </form>
                 </div>
             </div>
