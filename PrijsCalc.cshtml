@@ -1,0 +1,66 @@
+﻿@using WebMatrix.Data;
+@{
+
+
+
+    bool isEmpty = Request.Form["txteen"].IsEmpty() || Request.Form["txttwee"].IsEmpty();
+    int een = Request.Form["txteen"].AsInt();
+    int twee = Request.Form["txttwee"].AsInt();
+
+    Validation.Add("txteen", Validator.Required());
+    Validation.Add("txteen", Validator.Integer("Input moet een getal zijn!"));
+
+    Validation.Add("txttwee", Validator.Required());
+    Validation.Add("txttwee", Validator.Integer("Input moet een getal zijn!"));
+
+    int result = 0;
+
+    //if (IsPost/* && Validation.IsValid()*/)
+    //{
+
+    result = (een * twee) * 35;
+
+    //}
+    var prijs = result;
+    if (IsPost && !Request["buttonData"].IsEmpty())
+    {
+        prijs = Request.Form["prijs"].AsInt();
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True";
+
+        string provider = "System.Data.SqlClient";
+
+        Database db = Database.OpenConnectionString(connectionString, provider);
+        var insertCommand = "INSERT INTO Test  Values (@0)";
+        db.Execute(insertCommand, prijs);
+        Response.Redirect("~/Default");
+    }
+}
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <form method="post">
+        @*@if (!isEmpty)
+        {*@
+        <h1>@result</h1>
+        <h2>@prijs</h2>
+        <input type="text" name="prijs" value=@result readonly>
+        @*//}*@
+
+        @Html.ValidationMessage("txteen")
+        Nachten:
+        <input name="txteen" placeholder="een" type="text" value="@Request.Form["txteen"]" />
+        @Html.ValidationMessage("txttwee")
+        Personen:
+        <input name="txttwee" placeholder="twee" type="number" value="@Request.Form["txttwee"]" />
+        <button type="submit">Add</button>
+        @*<a href="~/Page2.cshtml" class="button"> next</a>*@
+        gebruikersnaam:<br>
+        <input type="text" name="add">
+        <input type="submit" name="buttonData" value="Add to db" />
+
+
+    </form>
+</body>
+</html>
