@@ -25,8 +25,17 @@
     var land = "";
     var huisdier = "";
     var personen = "";
+    // dingen voor berekenen prijs
+    bool isEmpty = Request.Form["txteen"].IsEmpty() || Request.Form["txttwee"].IsEmpty();
+    int een = Request.Form["txteen"].AsInt();
+    int twee = Request.Form["txttwee"].AsInt();
+    int result = 0;
+    result = (een * twee) * 35;
+    var prijs = result;
 
-    if (IsPost && Validation.IsValid())
+    
+
+    if (IsPost && Validation.IsValid()/* && !Request["buttonBereken"].IsEmpty()*/)
     {
         voornaam = Request.Form["voornaam"];
         tussenvoegsel = Request.Form["tussenvoegsel"];
@@ -40,15 +49,16 @@
         land = Request.Form["land"];
         huisdier = Request.Form["huisdier"];
         personen = Request.Form["personen"];
-
-
+        //
+        prijs = Request.Form["prijs"].AsInt();
+        //
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Mamaloe.mdf;Integrated Security=True";
 
         string provider = "System.Data.SqlClient";
 
         Database db = Database.OpenConnectionString(connectionString, provider);
-        var insertCommand = "INSERT INTO Reservering(voornaam, tussenvoegsel, achternaam, email, telefoonnummer, straat, huisnummer, postcode, woonplaats, land) Values(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)";
-        db.Execute(insertCommand, voornaam, tussenvoegsel, achternaam, email, telefoonnummer, straat, huisnummer, postcode, woonplaats, land);
+        var insertCommand = "INSERT INTO Reservering(voornaam, tussenvoegsel, achternaam, email, telefoonnummer, straat, huisnummer, postcode, woonplaats, land, prijs) Values(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10)";
+        db.Execute(insertCommand, voornaam, tussenvoegsel, achternaam, email, telefoonnummer, straat, huisnummer, postcode, woonplaats, land, prijs);
 
         Response.Redirect("~/ReservationComplete.cshtml");
     }
@@ -132,7 +142,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 order-md-2">
-                    <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Gegevens</span> </h4>  
+                    <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Gegevens</span> </h4>
                     <div class="row">
                         <div id="datepicker2"></div>
                     </div> <br />
@@ -173,11 +183,19 @@
                             </div>
                         </div>
                     </div>
+                    <form method="post">
+                        Personen:
+                        <input name="txttwee" placeholder="twee" type="number" value="@Request.Form["txttwee"]" />
+                        Nachten:
+                        <input name="txteen" placeholder="een" type="text" value="@Request.Form["txteen"]" />
+                        <input type="text" name="prijs" value=$@result readonly>
+                        <button type="submit">Add</button>
+                    </form>
                     <div class="row">
                         <div class="col-md-6"></div>
                         <div class="col-md-6"></div>
                     </div>
-                    <br/>
+                    <br />
                     <div class="row">
                         <div class="col-md-12">
                             <h5 class="">Totaal prijs:</h5>
