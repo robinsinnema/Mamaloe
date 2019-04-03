@@ -1,5 +1,9 @@
 ﻿@using WebMatrix.Data
 @{
+    Layout = "~/Shared/_Header.cshtml";
+    Page.Title = "Gegevens";
+    // zorgt voor de pagina titel en de layout.
+
     var resultMessage = "";
 
     var voornaam = "";
@@ -16,6 +20,7 @@
     var uitcheck_datum = "";
     var aantal_personen = "";
     var huisdier = "";
+    // Variabelen Die nodig zijn voor de invoer van de gegevens in de database.
 
     if (Session["voornaam"] != null)
     {
@@ -73,6 +78,7 @@
     {
         huisdier = (string)Session["huisdier"];
     }
+    // Voor het tijdelijk opslaan en het laten zien van de ingevoerde gegevens.
 
     if (IsPost && Validation.IsValid())
     {
@@ -90,12 +96,12 @@
         uitcheck_datum = Request.Form["uitcheck_datum"];
         aantal_personen = Request.Form["aantal_personen"];
         huisdier = Request.Form["huisdier"];
-
+        // Vraagt de ingevoerde gegevens op.
         if (IsPost && Validation.IsValid())
         {
             if (DBManager.SetReservation(Request.Form["voornaam"], Request.Form["tussenvoegsel"], Request.Form["achternaam"], Request.Form["email"], Request.Form["telefoonnummer"], Request.Form["straat"], Request.Form["huisnummer"], Request.Form["woonplaats"], Request.Form["postcode"], Request.Form["land"], Request.Form["opmerking"], Request.Form["incheck_datum"], Request.Form["uitcheck_datum"], Request.Form["aantal_personen"].AsInt(), Request.Form["huisdier"].AsBool()))
             {
-                Response.Redirect("~/Gegevenspage.cshtml");
+                Response.Redirect("~/ReservationComplete.cshtml");
             }
             else
             {
@@ -103,69 +109,25 @@
             }
 
         }
+        // Zet de gegevens in de database, en als er een fout is komt er een foutmelding.
     }
 }
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
-    <title>Checkout</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="StyleSheet.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" style=""></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" style=""></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous" style=""></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
 </head>
 
 <body class="bg-light">
-    <nav class="navbar navbar-expand-md bg-warning navbar-light">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar13" style="">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar13">
-                <a class="navbar-brand d-none d-md-block" href="~/Hoofdpagina.cshtml">
-                    <i class="fa d-inline fa-lg fa-stop-circle-o"></i>
-                    <b contenteditable="false"> Mamaloe</b>
-                </a>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"> <a class="nav-link" href="Hoofdpagina.cshtml">Hoofdpagina</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="Reservation.cshtml">Reserveren</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="informatiepagina.cshtml">Informatie</a> </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link">
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <img src="images/vlaggen/netherlands-flag-round-icon-16.png">
-                    </li>
-                    &nbsp;
-                    &nbsp;
-                    <li class="nav-item">
-                        <img src="images/vlaggen/germany-flag-round-icon-16.png">
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  
     <div class="py-5">
         <div class="container" align="center">
             <div class="row">
                 <div class="text-center col-md-12">
                     <h1>Uw Reservering</h1>
                 </div>
+                @* Header tekst. *@
             </div>
             <div class="col-lg-4 col-md-6 p-3"></div>
             <div class="col-lg-6 p-3">
@@ -175,7 +137,9 @@
                             <div class="col-8 col-md-12">
                                 @resultMessage
                                 <h3 class="">Uw gegevens</h3>
+                                @* Header tekst. *@
                                 <h6>Persoonlijke gegevens</h6>
+                                @* Header tekst. *@
                                 <div class="row">
                                     <div class="col-md-6"></div>
                                     <div class="col-md-6">
@@ -185,37 +149,38 @@
                         </div>
                         <ul class="list-group pl-3">
                             <li class="list-group-item"><b>Naam: &nbsp;</b>@Session["voornaam"]</li>
-                           
+
                             <li class="list-group-item"><b>Tussenvoegsel: &nbsp;</b>@Session["tussenvoegsel"]</li>
-                           
+
                             <li class="list-group-item"><b>Achternaam: &nbsp;</b>@Session["achternaam"]</li>
-                            
+
                             <li class="list-group-item"><b>Email:&nbsp;</b>@Session["email"]</li>
-                            
+
                             <li class="list-group-item"><b>Straat:&nbsp;</b>@Session["straat"]</li>
-                            
+
                             <li class="list-group-item"><b>Huisnummer:&nbsp;</b>@Session["huisnummer"]</li>
-                            
+
                             <li class="list-group-item"><b>Woonplaats:&nbsp;</b>@Session["woonplaats"]</li>
-                            
+
                             <li class="list-group-item"><b>Postcode:&nbsp;</b>@Session["postcode"]</li>
-                            
+
                             <li class="list-group-item"><b>Telefoonnummer:&nbsp;</b>@Session["telefoonnummer"]</li>
-                            
+
                             <li class="list-group-item"><b>Land:&nbsp;</b>@Session["land"]</li>
                             <br>
                             <h5>Reservering</h5>
                             <li class="list-group-item"><b>Incheckdatum: &nbsp;</b>@Session["incheck_datum"]</li>
-                            
+
                             <li class="list-group-item"><b>uitcheckdatum: &nbsp;</b>@Session["uitcheck_datum"]</li>
-                            
+
                             <li class="list-group-item"><b>Aantal personen: &nbsp;</b>@Session["aantal_personen"]</li>
-                            
+
                             <li class="list-group-item"><b>Huisdieren:&nbsp;</b>@Session["huisdier"]</li>
-                            
+
                             <li class="list-group-item"><b>Totaal prijs:&nbsp;</b>@Session["prijs"]</li>
-                            
+                            @* Laat de ingevulde gegevens zien. *@
                         </ul> <a class="btn mt-3 btn-warning w-100" href="ReservationComplete.cshtml">Bevestig</a>
+                        @* Bevestigt de reservatie, en voegt de gegevens toe aan de database. *@
                     </div>
                 </div>
             </div>
