@@ -2,13 +2,15 @@
 @{
     Layout = "~/Shared/_Header.cshtml";
     Page.Title = "Overzichtspagina Reserveren";
+    // zorgt voor de pagina titel en de layout.
     string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Mamaloe.mdf;Integrated Security=True";
 
     string provider = "System.Data.SqlClient";
 
     Database db = Database.OpenConnectionString(connectionString, provider);
     var selectedData = db.Query("SELECT * FROM Klant, Reservering ");
-    var grid = new WebGrid(source: selectedData, rowsPerPage: 5);
+    var grid = new WebGrid(source: selectedData, rowsPerPage: 10);
+    //Roept de database aan, en laat alles zien uit de tabel "klant".
 
 }
 
@@ -26,6 +28,7 @@
                     <i class="fa d-block fa-bullseye fa-5x mb-4 text-info"></i>
                     <h2><b>Filler Tekst!</b></h2>
                     <p class="lead" contenteditable="true" style="">Hier staan de ingevoerde gegevens:</p>
+                    @* Header tekst met onderliggende tekst. *@
                 </div>
             </div>
         </div>
@@ -56,7 +59,7 @@
                   grid.Column("status")
                   )
                   )
-
+                    @* Laat de colummen zien en roept de gegevens aan. *@
                 </div>
             </div>
         </div>
