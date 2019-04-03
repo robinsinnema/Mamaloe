@@ -95,7 +95,7 @@
         {
             if (DBManager.SetReservation(Request.Form["voornaam"], Request.Form["tussenvoegsel"], Request.Form["achternaam"], Request.Form["email"], Request.Form["telefoonnummer"], Request.Form["straat"], Request.Form["huisnummer"], Request.Form["woonplaats"], Request.Form["postcode"], Request.Form["land"], Request.Form["opmerking"], Request.Form["incheck_datum"], Request.Form["uitcheck_datum"], Request.Form["aantal_personen"].AsInt(), Request.Form["huisdier"].AsBool()))
             {
-                Response.Redirect("~/Gegevenspage.cshtml");
+                Response.Redirect("~/ReservationComplete.cshtml");
             }
             else
             {
