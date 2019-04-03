@@ -2,6 +2,7 @@
 @{
     Layout = "~/Shared/_Header.cshtml";
     Page.Title = "Gegevens";
+    // zorgt voor de pagina titel en de layout.
 
     var resultMessage = "";
 
@@ -19,7 +20,8 @@
     var uitcheck_datum = "";
     var aantal_personen = "";
     var huisdier = "";
-
+    // Variabelen Die nodig zijn voor de invoer van de gegevens in de database.
+    
     if (Session["voornaam"] != null)
     {
         voornaam = (string)Session["voornaam"];
@@ -76,7 +78,7 @@
     {
         huisdier = (string)Session["huisdier"];
     }
-
+    // Voor het tijdelijk opslaan en het laten zien van de ingevoerde gegevens.
     if (IsPost && Validation.IsValid())
     {
         voornaam = Request.Form["voornaam"];
@@ -93,7 +95,7 @@
         uitcheck_datum = Request.Form["uitcheck_datum"];
         aantal_personen = Request.Form["aantal_personen"];
         huisdier = Request.Form["huisdier"];
-
+        // Vraagt de ingevoerde gegevens op.
         if (IsPost && Validation.IsValid())
         {
             if (DBManager.SetReservation(Request.Form["voornaam"], Request.Form["tussenvoegsel"], Request.Form["achternaam"], Request.Form["email"], Request.Form["telefoonnummer"], Request.Form["straat"], Request.Form["huisnummer"], Request.Form["woonplaats"], Request.Form["postcode"], Request.Form["land"], Request.Form["opmerking"], Request.Form["incheck_datum"], Request.Form["uitcheck_datum"], Request.Form["aantal_personen"].AsInt(), Request.Form["huisdier"].AsBool()))
@@ -106,6 +108,7 @@
             }
 
         }
+        // Zet de gegevens in de database, en als er een fout is komt er een foutmelding.
     }
 }
 <!DOCTYPE html>
@@ -123,6 +126,7 @@
                 <div class="text-center col-md-12">
                     <h1>Uw Reservering</h1>
                 </div>
+                @* Header tekst. *@
             </div>
             <div class="col-lg-4 col-md-6 p-3"></div>
             <div class="col-lg-6 p-3">
@@ -132,7 +136,9 @@
                             <div class="col-8 col-md-12">
                                 @resultMessage
                                 <h3 class="">Uw gegevens</h3>
+                                @* Header tekst. *@
                                 <h6>Persoonlijke gegevens</h6>
+                                @* Header tekst. *@
                                 <div class="row">
                                     <div class="col-md-6"></div>
                                     <div class="col-md-6">
@@ -171,8 +177,9 @@
                             <li class="list-group-item"><b>Huisdieren:&nbsp;</b>@Session["huisdier"]</li>
                             
                             <li class="list-group-item"><b>Totaal prijs:&nbsp;</b>@Session["prijs"]</li>
-                            
+                            @* Laat de ingevulde gegevens zien. *@
                         </ul> <a class="btn mt-3 btn-warning w-100" href="ReservationComplete.cshtml">Bevestig</a>
+                        @* Bevestigt de reservatie, en voegt de gegevens toe aan de database. *@
                     </div>
                 </div>
             </div>
