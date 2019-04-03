@@ -2,6 +2,7 @@
 @{
     Layout = "~/Shared/_Header.cshtml";
     Page.Title = "Reservatie Compleet";
+    // zorgt voor de pagina titel en de layout.
 }
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,9 @@
                 <div class="text-center col-md-7 mx-auto">
                     <i class="fa d-block fa-bullseye fa-5x mb-4 text-dark"></i>
                     <h2><b>Bedankt voor het reserveren!</b></h2>
+                    @* Header tekst. *@
                     <p class="lead" contenteditable="false" style="">Er wordt een bevestigings mail gestuurd naar het onderstaande adres:<br><br>@Session["email"]</p>
+                    @* Laat het email address zien. *@
                 </div>
             </div>
         </div>
