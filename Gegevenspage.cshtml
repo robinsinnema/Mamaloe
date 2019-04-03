@@ -1,4 +1,5 @@
-﻿@{
+﻿@using WebMatrix.Data
+@{
     var voornaam = "";
     var tussenvoegsel = "";
     var achternaam = "";
@@ -74,7 +75,6 @@
 
         Response.Redirect("~/ReservationComplete.cshtml");
     }
-
 }
 <!DOCTYPE html>
 <html>
@@ -153,29 +153,27 @@
                                 </div>
                             </div>
                         </div>
-                        <form method="post">
-                            <ul class="pl-3">
-                                <li>Inchekdatum</li>
-                                <li>Uitcheckdatum</li>
-                                <li>Aantal personen<br></li>
-                                <li>Huisdieren<br></li>
-                                <li>Naam<br></li>@Session["voornaam"]
-                                <li>Tussenvoegsel<br></li>@Session["tussenvoegsel"]
-                                <li>Achternaam<br></li>@Session["achternaam"]
-                                <li>Email<br></li>@Session["email"]
-                                <li>Straat<br></li>@Session["straat"]
-                                <li>Huisnummer<br></li>@Session["huisnummer"]
-                                <li>Woonplaats<br></li>@Session["woonplaats"]
-                                <li>Postcode<br></li>@Session["postcode"]
-                                <li>Telefoonnummer<br></li>@Session["telefoonnummer"]
-                                <li>Land<br></li>@Session["land"]
-                            </ul> <button class="btn btn-warning btn-lg btn-block" name="SubmitButton" type="submit">Bevestig</button>
-                        </form>
+                        <ul class="pl-3">
+                            <li>Inchekdatum</li>
+                            <li>Uitcheckdatum</li>
+                            <li>Aantal personen<br></li>
+                            <li>Huisdieren<br></li>
+                            <li><b>Naam</b></li>@Session["voornaam"]<br>
+                            <li><b>tussenvoegsel</b></li>@Session["tussenvoegsel"]<br>
+                            <li><b>Achternaam</b></li>@Session["achternaam"]<br>
+                            <li><b>Email</b></li>@Session["email"]<br>
+                            <li><b>Straat</b></li>@Session["straat"]<br>
+                            <li><b>Huisnummer</b></li>@Session["huisnummer"]<br>
+                            <li><b>Woonplaats</b></li>@Session["woonplaats"]<br>
+                            <li><b>Postcode</b></li>@Session["postcode"]<br>
+                            <li><b>Telefoonnummer</b></li>@Session["telefoonnummer"]<br>
+                            <li><b>Land</b></li>@Session["land"]<br>
+                        </ul> <a class="btn mt-3 btn-warning w-100" href="ReservationComplete.cshtml">Bevestig</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @Request["land"]
+
 </body>
 </html>
