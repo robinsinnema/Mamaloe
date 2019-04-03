@@ -1,75 +1,32 @@
 ﻿@using WebMatrix.Data
 @{
-    // dingen voor berekenen prijs
+    Layout = "~/Shared/_DeHeader.cshtml";
+    Page.Title = "Voorpagina";
+    // zorgt voor de pagina titel en de layout.
     bool isEmpty = Request.Form["txteen"].IsEmpty() || Request.Form["txttwee"].IsEmpty();
     int een = Request.Form["txteen"].AsInt();
     int twee = Request.Form["txttwee"].AsInt();
     int result = 0;
     result = (een * twee) * 35;
     var prijs = result;
+    // berekent de prijs doormiddel van twee invoervelden. Verander 35 om de vermenevuldigingsprijs te veranderen.
 }
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- PAGE settings -->
-    <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
-    <title>Checkout</title>
-    <!-- CSS dependencies -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="StyleSheet.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" style=""></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" style=""></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous" style=""></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script>
         $(function () {
             $("#datepicker1").datepicker();
         });
     </script>
-
+    @*De datepicker laat het kaartje met datums zien. *@
 </head>
 
 <body class="bg-light">
-    <nav class="navbar navbar-expand-md bg-warning navbar-light">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar13" style="">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar13">
-                <a class="navbar-brand d-none d-md-block" href="~/Hoofdpagina.cshtml">
-                    <i class="fa d-inline fa-lg fa-stop-circle-o"></i>
-                    <b contenteditable="false"> Mamaloe</b>
-                </a>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"> <a class="nav-link" href="Hoofdpagina.cshtml">Hoofdpagina</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="Reservation.cshtml">Reserveren</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="informatiepagina.cshtml">Informatie</a> </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link">
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <img src="images/vlaggen/netherlands-flag-round-icon-16.png">
-                    </li>
-                    &nbsp;
-                    &nbsp;
-                    <li class="nav-item">
-                        <img src="images/vlaggen/germany-flag-round-icon-16.png">
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -78,15 +35,18 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block" src="images/omgeving/20190329_151306_HDR.jpg" height="500"  alt="First slide" style="width:100%"> 
+                <img class="d-block" src="images/omgeving/20190329_151306_HDR.jpg" height="500" style="width:100%" alt="First slide">
             </div>
+            @* De afbeelding bron en het formaat *@
             <div class="carousel-item">
-                <img class="d-block " src="images/omgeving/kopiebos.jpg" height="500"  style="width:100%" alt="Second slide">
+                <img class="d-block " src="images/omgeving/kopiebos.jpg" height="500" style="width:100%" alt="Second slide">
             </div>
+            @* De afbeelding bron en het formaat *@
             <div class="carousel-item">
-                <img class="d-block " src="images/omgeving/meer donker aangepast.jpg" height="500"  style="width:100%" alt="Third slide">
+                <img class="d-block " src="images/omgeving/meer donker aangepast.jpg" height="500" style="width:100%" alt="Third slide">
                 <div class="carousel-caption">
                 </div>
+                @* De afbeelding bron en het formaat *@
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -97,6 +57,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+        @* Knoppen om naar een andere afbeelding toe te gaan. *@
     </div>
     <div class="py-5">
         <div class="container">
@@ -104,33 +65,38 @@
                 <div class="col-lg-4 p-md-5 p-3 d-flex flex-column justify-content-center">
                     <h4>Beschikbaarheid: </h4>
                     <div id="datepicker1"></div><br />
+                    @* Roept het kaartje met datums aan. *@
                     <div>
+                        @* Roept het kaartje met datums aan. *@
                         <a class="btn btn-warning" href="Reservation.cshtml">Reserveer</a>
+                        @* Knop om naar de reserveringspagina te gaan. *@
                     </div>
                     <br>
                     <div class="row">
                         @*<div class="col-md-12">
-                                <h4 class="">Bereken hier uw prijs:</h4>
-                                <form method="post">
-                                    Personen:
-                                    <input name="txttwee" placeholder="max4." type="number" class="form-control" value="@Request.Form["txttwee"]" />
-                                    Nachten:
-                                    <input name="txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form["txteen"]" />
-                                    <input type="text" name="prijs" class="form-control" value=€@result readonly>
-                                    <br>
-                                    <button class="btn btn-warning" type="submit">Bereken</button>
-                                </form>
-                            </div>*@
+                    <h4 class="">Bereken hier uw prijs:</h4>
+                    <form method="post">
+                        Personen:
+                        <input name="txttwee" placeholder="max4." type="number" class="form-control" value="@Request.Form["txttwee"]" />
+                        Nachten:
+                        <input name="txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form["txteen"]" />
+                        <input type="text" name="prijs" class="form-control" value=€@result readonly>
+                        <br>
+                        <button class="btn btn-warning" type="submit">Bereken</button>
+                    </form>
+                </div>*@
                     </div>
                 </div>
                 <div class="col-lg-4 p-md-5 p-3">
                     <h3> Welkom op Mamaloe</h3>
+                    @* Header tekst, met hieronder de bijbehoorende tekst. *@
                     <p>
                         Wilt u een stacaravan huren in friesland?
                         Dit is een prachtige plek om even tot rust te komen en aan niets te denken. We bevinden ons in Rijs, Rijs staat bekend als een gastvriendelijk dorpje!
                     </p>
                 </div>
                 <div class="col-md-4 p-md-5"><img class="img-fluid d-block" src="images/camping/20190329_142709_HDR.jpg"></div>
+                @* Laat een afbeelding zien naast de tekst. *@
             </div>
         </div>
     </div>
@@ -147,8 +113,10 @@
                             Nachten:
                             <input name="txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form[" txteen"]" />
                             <input type="text" name="prijs" class="form-control" value=€@result readonly>
+                            @* Invoer voor het berekenen van de totaalprijs, met aantal nachten en aantal personen. *@
                             <br>
                             <button class="btn btn-warning" type="submit">Bereken</button>
+                            @* Knop om de prijs te berekenen. *@
                         </form>
                     </div>
                 </div>
@@ -156,8 +124,9 @@
 
             <div class="col-lg-4 p-md-5 p-3">
                 <h3> Omgeving</h3>
+                @* Kopje met bijbehoorende tekst eronder. *@
                 <p>
-                    Rijs is een dorp in de gemeente De Friese Meren, in de Nederlandse provincie Friesland. Het ligt ten zuidoosten van Stavoren en Bakhuizen, aan de weg Oudemirdum - Hemelum. Het dorp ligt aan de noordoostkant van het Rijsterbos vlakbij, het IJsselmeer.
+                    Rijs is een dorp in de gemeente De Friese Meren, in de Nederlandse provincie Friesland. Het ligt ten zuidoosten van Stavoren en Bakhuizen, aan de weg Oudemirdum - Hemelum. Het dorp ligt aan de noordoostkant van het Rijsterbos vlakbij het IJsselmeer.
                 </p>
             </div>
                 <div class="col-lg-4 p-3">
@@ -168,26 +137,20 @@
                             <div class="carousel-item"> <img class="d-block w-100" src="images/omgeving/IMG_20190329_152110.jpg"> </div>
                             <div class="carousel-item"> <img class="d-block w-100" src="images/caravan/totaalfoto.jpg"> </div>
                         </div>
+                        @* Slideshow met afbeelding bron en het formaat. *@
                         <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         </a>
                         <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         </a>
+                        @* Knoppen om naar een andere afbeelding toe te gaan. *@
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="py-5 text-muted text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 my-4">
-                    <p class="mb-1">© 2019 Mamaloe</p>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
 
 </body>
