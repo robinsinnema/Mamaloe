@@ -1,0 +1,262 @@
+﻿@using WebMatrix.Data;
+
+@{
+    Validation.RequireField("voornaam", "Voornaam is verplicht");
+    Validation.RequireField("achternaam", "Achternaam is verplicht");
+    Validation.RequireField("email", "Email is verplicht");
+    Validation.RequireField("telefoonnummer", "Telefoonnummer is verplicht");
+    Validation.RequireField("straat", "Straat is verplicht");
+    Validation.RequireField("huisnummer", "Huisnummer is verplicht");
+    Validation.RequireField("postcode", "Postcode is verplicht");
+    Validation.RequireField("woonplaats", "Plaats is verplicht");
+    Validation.RequireField("land", "Land is verplicht");
+    //Validation.RequireField("incheck_datum", "Incheck datum is verplicht");
+    //Validation.RequireField("uitcheck_datum", "Uitcheck datum is verplicht");
+    //Validation.RequireField("aantal_personen", "Aantal personen is verplicht en mag maximaal 4 personen zijn");
+    //Validation.RequireField("huisdier", "Geef aan of u een huisdier wilt meenemen");
+
+    if (IsPost && Validation.IsValid())
+    {
+        if (Request.UrlReferrer.AbsolutePath == Request.Url.AbsolutePath)
+        {
+            Session["voornaam"] = Request.Form["voornaam"];
+            Session["tussenvoegsel"] = Request.Form["tussenvoegsel"];
+            Session["achternaam"] = Request.Form["achternaam"];
+            Session["email"] = Request.Form["email"];
+            Session["telefoonnummer"] = Request.Form["telefoonnummer"];
+            Session["straat"] = Request.Form["straat"];
+            Session["huisnummer"] = Request.Form["huisnummer"];
+            Session["postcode"] = Request.Form["postcode"];
+            Session["woonplaats"] = Request.Form["woonplaats"];
+            Session["land"] = Request.Form["land"];
+            Session["incheck_datum"] = Request.Form["incheck_datum"];
+            Session["uitcheck_datum"] = Request.Form["uitcheck_datum"];
+            Session["aantal_personen"] = Request.Form["aantal_personen"];
+            Session["huisdier"] = Request.Form["huisdier"];
+
+            Response.Redirect("~/Gegevenspage.cshtml");
+        }
+    }
+
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- PAGE settings -->
+    <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
+    <title>Checkout</title>
+    <!-- CSS dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="wireframe.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" style=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" style=""></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous" style=""></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker1").datepicker();
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#datepicker2").datepicker();
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#datepicker3").datepicker();
+        });
+    </script>
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-md bg-warning navbar-light">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar13" style="">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar13">
+                <a class="navbar-brand d-none d-md-block" href="~/Hoofdpagina.cshtml">
+                    <i class="fa d-inline fa-lg fa-stop-circle-o"></i>
+                    <b contenteditable="false"> Mamaloe</b>
+                </a>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"> <a class="nav-link" href="Hoofdpagina.cshtml">Hoofdpagina</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="Reservation.cshtml">Reserveren</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="informatiepagina.cshtml">Informatie</a> </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <img src="images/vlaggen/netherlands-flag-round-icon-16.png">
+                    </li>
+                    &nbsp;
+                    &nbsp;
+                    <li class="nav-item">
+                        <img src="images/vlaggen/germany-flag-round-icon-16.png">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="display-4">Reserveren</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 order-md-2">
+                    <form class="needs-validation" method="post" novalidate="">
+                        <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Gegevens</span> </h4>
+                        <br />
+                        <div id="datepicker1"></div><br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="">Incheckdatum:<input name="incheck_datum" value="" type="text" id="datepicker2" class="form-control"></h6>
+                                @Html.ValidationMessage("incheck_datum")
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-14">
+                                    <h6 class="">Uitcheckdatum:<input name="uitcheck_datum" value="" type="text" id="datepicker3" class="form-control"></h6>
+                                    @Html.ValidationMessage("uitcheck_datum")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="">Aantal personen:(Max. 4)<input name="aantal_personen" value="" type="number" id="" class="form-control"></h6>
+                                @Html.ValidationMessage("aantal_personen")
+                            </div>
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <div class="col-md-14">
+                                    <h6 class="">Huisdier:<input name="huisdier" value="" type="text" id="" class="form-control"></h6>
+                                    @Html.ValidationMessage("huisdier")
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <br />
+                    </form> 
+                </div>
+                <div class="col-md-8 order-md-1">
+                    <h4 class="mb-3">Persoonlijke gegevens</h4>
+                    <form class="needs-validation" method="post" novalidate="">
+                        <div class="row">
+                            <div class="col-md-4 mb-3" style="">
+                                <label for="firstName">Voornaam:</label>
+                                <input type="text" name="voornaam" class="form-control" id="firstName" placeholder="" value="" required="">
+                                @Html.ValidationMessage("voornaam")
+                            </div>
+                            <div class="col-md-4 mb-3" style="">
+                                <label for="tussenvoegsel">Tussenvoegsel:</label>
+                                <input type="text" name="tussenvoegsel" class="form-control" id="infix" placeholder="" value="" required="">
+                            </div>
+                            <div class="col-md-4 mb-3" style="">
+                                <label for="lastName">Achternaam:</label>
+                                <input type="text" name="achternaam" class="form-control" id="lastName" placeholder="" value="" required="">
+                                @Html.ValidationMessage("achternaam")
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" contenteditable="false">Email:<span class="text-muted"></span></label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="">
+                            @Html.ValidationMessage("email")
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-12 mb-3">
+                                    <label for="straat">Straat:</label>
+                                    <input type="text" name="straat" class="form-control" id="straat" placeholder="" value="" required="">
+                                    @Html.ValidationMessage("straat")
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12 mb-3">
+                                    <label for="huisnummer">Huisnummer:</label>
+                                    <input type="text" name="huisnummer" class="form-control" id="huisnummer" placeholder="" value="" required="">
+                                    @Html.ValidationMessage("huisnummer")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="invalid-feedback" style=""></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="woonplaats">Woonplaats:</label>
+                                            <input type="text" name="woonplaats" class="form-control" id="woonplaats" placeholder="" value="" required="">
+                                            @Html.ValidationMessage("woonplaats")
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="postcode">Postcode:</label>
+                                            <input type="text" name="postcode" class="form-control" id="postcode" placeholder="" value="" required="">
+                                            @Html.ValidationMessage("postcode")
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 mb-3" style="">
+                                            <label for="telefoonnummer">Telefoonnummer:</label>
+                                            <input type="text" name="telefoonnummer" class="form-control" id="telefoonnummer" placeholder="" value="" required="">
+                                            @Html.ValidationMessage("telefoonnummer")
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="land">Land:</label>
+                                            <input type="text" name="land" class="form-control" id="land" placeholder="" value="" required="">
+                                            @Html.ValidationMessage("land")
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-2">Opmerking:</label>
+                                            <div class="col-10"><textarea class="form-control" name="opmerking" value="" id="form35" rows="3" placeholder="Vul hier uw eventuele opmerking"></textarea></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-warning btn-lg btn-block" name="SubmitButton" type="submit">Reserveer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-5 text-muted text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 my-4">
+                    <p class="mb-1">© 2019 Mamaloe</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
