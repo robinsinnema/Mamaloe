@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Shared/_Header.cshtml";
     Page.Title = "Informatie Pagina";
+    // zorgt voor de pagina titel en de layout.
 }
 
 <!DOCTYPE html>
@@ -17,6 +18,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="display-4">Camping Rijsterbos</h1>
+                    @* Header tekst. *@
                 </div>
             </div>
         </div>
@@ -28,8 +30,10 @@
                 <div class="col-lg-2 col-4 d-flex flex-column justify-content-between order-3 order-lg-2"> <img class="img-fluid d-block" src="images/caravan/keuken.jpg"> <img class="img-fluid d-block" src="images/caravan/slaapkamer.jpg"> </div>
                 <div class="px-md-5 p-3 d-flex flex-column justify-content-center col-lg-6 order-1 order-lg-3">
                     <i class="d-block fa fa-circle fa-3x mb-2 text-muted"></i>
+                    @* Blok met afbeeldingen van de caravan, en hun bron. *@
                     <h1>Caravan</h1>
                     <p class="lead">Deze stacaravan bevindt zich op een camping in het mooie Rijs aan het ijselmeer! Deze stacaravan is bedoelt voor maximaal 4 personen.</p>
+                    @* Header tekst en onderliggende tekst. *@
                 </div>
             </div>
         </div>
@@ -40,9 +44,11 @@
                 <div class="px-md-5 p-3 d-flex flex-column justify-content-center col-lg-6 order-1 order-lg-3">
                     <i class="d-block fa fa-circle fa-3x mb-2 text-muted"></i>
                     <h1>Camping</h1>
-                    <p class="lead">Op deze camping genaamd rijsterbos, bevindt zich een mooi verwarmd openluchtzwembad naast dit zijn er verschillende activiteiten te doen onder andere:(kano, fiets en scooter verhuur plus een tiener plek waar zich ook een X box bevindt.) Er bevindt zich ook een restaurant/pizzaria service.</p>
+                    <p class="lead">Op deze camping genaamd rijsterbos, bevindt zich een mooi verwarmd openluchtzwembad naast dit zijn er verschillende activiteiten te doen. Met onderandere:(kano, fiets en scooter verhuur plus een tiener plek waar zich ook een X box bevindt.) Er bevindt zich ook een restaurant/pizzaria service.</p>
+                    @* Header tekst en onderliggende tekst. *@
                 </div>
                 <div class="px-md-5 p-3 d-flex flex-column justify-content-center col-lg-6 order-1 order-lg-3"><img class="img-fluid d-block" src="images/camping/zwembad.jpg"></div>
+                @* Afbeelding met bron. *@
             </div>
         </div>
     </div>
@@ -51,10 +57,12 @@
             <div class="row">
                 <div class="col-lg-4 col-8 order-2 order-lg-1"> <img class="img-fluid d-block" src="images/omgeving/het bos.jpeg"> </div>
                 <div class="col-lg-2 col-4 d-flex flex-column justify-content-between order-3 order-lg-2"> <img class="img-fluid d-block" src="images/omgeving/IMG_20190329_152110.jpg"> <img class="img-fluid d-block" src="images/omgeving/meer.JPG"> </div>
+                @* Blok met afbeeldingen van de omgeving, en hun bron. *@
                 <div class="px-md-5 p-3 d-flex flex-column justify-content-center col-lg-6 order-1 order-lg-3">
                     <i class="d-block fa fa-circle fa-3x mb-2 text-muted"></i>
                     <h1>Omgeving</h1>
                     <p class="lead">De camping ligt aan de rand van het rijsterbos en natuurlijk aan het ijselmeer. Hier zou u prachtig kunnen varen of kitesurfen. Ook zou u mooie wandelingen kunnen maken in het bos.</p>
+                    @* Header tekst en onderliggende tekst. *@
                 </div>
             </div>
         </div>
@@ -70,7 +78,7 @@
                                     <a class="nav-link " data-toggle="tab" data-target="#tabone">Faciliteiten camping</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " data-toggle="tab" data-target="#tabtwo">Activiteiten?</a>
+                                    <a class="nav-link " data-toggle="tab" data-target="#tabtwo">Activiteiten</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link " data-toggle="tab" data-target="#tabthree">Voorzieningen</a>
@@ -81,7 +89,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link " data-toggle="tab" data-target="#tabfive">Algemene informatie</a>
                                 </li>
-
+                                @* Kopjes van het klikbara menu. *@
                             </ul>
                         </div>
                         <div class="card-body">
@@ -91,6 +99,7 @@
                                         <li>Chill plaza</li>
                                         <li>Wasserette</li>
                                         <li>Verwarmd sanitair</li>
+                                        @* Tab die behoort tot de camping faciliteiten. *@
                                     </ul>
                                 </div>
                                 <div class="tab-pane fade" id="tabtwo" role="tabpanel">
@@ -100,7 +109,7 @@
                                         <li>kanovaren</li>
                                         <li>Speeltuin</li>
                                         <li>Recreatieteam</li>
-                                        <li></li>
+                                        @* Tab die behoort tot de activiteiten. *@
                                     </ul>
                                 </div>
                                 <div class="tab-pane fade" id="tabthree" role="tabpanel">
@@ -111,6 +120,7 @@
                                         <li>gasfornuis</li>
                                         <li>Waterkoker</li>
                                     </ul>
+                                    @* Tab die behoort tot de voorzieningen.. *@
                                 </div>
                                 <div class="tab-pane fade" id="tabfour" role="tabpanel">
                                     <ul class="">
@@ -119,12 +129,14 @@
                                         <li>Ijsboerderij</li>
                                         <li>Speelpark voor kinderen.</li>
                                     </ul>
+                                    @* Tab die behoort tot de ligging.. *@
                                 </div>
                                 <div class="tab-pane fade" id="tabfive" role="tabpanel">
                                     <ul class="">
                                         <li>Parkeerplek voor uw auto is gratis.</li>
                                         <li>Prijs wordt berekend bij de reservering.</li>
                                         <li>Huisdieren zijn toegestaan.</li>
+                                        @* Tab die behoort tot de algemene informatie.. *@
                                     </ul>
                                 </div>
                             </div>
@@ -137,6 +149,7 @@
     <div class="pb-5">
         <div class="container-fluid p-0">  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2408.78402855647!2d5.496469915788413!3d52.86229267988047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c89477d247b43b%3A0xa96029aa65f62a2f!2sCamping+Rijsterbos!5e0!3m2!1snl!2snl!4v1553269683430" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe></div>
     </div>
+    @* Een Google Maps kaartje van de omgeving. *@
 </body>
 
 </html>
