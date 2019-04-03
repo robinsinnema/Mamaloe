@@ -5,17 +5,14 @@
     string provider = "System.Data.SqlClient";
 
     Database db = Database.OpenConnectionString(connectionString, provider);
-    var selectedData = db.Query("SELECT * FROM Reservering");
-    var grid = new WebGrid(source: selectedData, rowsPerPage:3);
+    var selectedData = db.Query("SELECT * FROM Klant, Reservering ");
+    var grid = new WebGrid(source: selectedData, rowsPerPage: 5);
 
 }
 <style>
-
     .grid {
-        margin: 50%;
         border-collapse: collapse;
         width: 50%;
-
     }
 
         .grid th, .grid td {
@@ -23,7 +20,6 @@
             padding: 5px;
             width: 50%;
             text-align: center;
-            
         }
 
     .head {
@@ -32,7 +28,6 @@
         text-align: left;
         background-color: #ffba00;
         color: white;
-
     }
 
     .alt {
@@ -63,9 +58,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar13">
-                <a class="navbar-brand d-none d-md-block" href="#">
+                <a class="navbar-brand d-none d-md-block" href="~/Hoofdpagina.cshtml">
                     <i class="fa d-inline fa-lg fa-stop-circle-o"></i>
-                    <b contenteditable="true"> Mamalou</b>
+                    <b contenteditable="false"> Mamaloe</b>
                 </a>
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"> <a class="nav-link" href="Hoofdpagina.cshtml">Hoofdpagina</a> </li>
@@ -102,74 +97,44 @@
     </div>
     <div class="flex-container">
 
-        </div>
-        <div class="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 order-md-2">
-                        <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Gegevens:</span> </h4>
-                        @* ----------------------------------------------------------------------------------------- *@
-                        @grid.GetHtml(
-                  tableStyle: "grid",
-                  headerStyle: "head",
-                  alternatingRowStyle: "alt",
-                  columns: grid.Columns(
-                  grid.Column("Klantnummer"),
-                      grid.Column("Voornaam"),
-                      grid.Column("Achternaam"),
-                      grid.Column("Email"),
-                       grid.Column("Telefoonnummer"),
-                         grid.Column("Straat"),
-                          grid.Column("Huisnummer"),
-                           grid.Column("Tussenvoegsel"),
-                            grid.Column("Postcode"),
-                            grid.Column("Woonplaats"),
-                            grid.Column("Land"),
-                            grid.Column("Huisdier"),
-                            grid.Column("Personen")
-                      )
-                      )
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    </div>
+    <div class="">
         <div class="container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 align-items-center"><a class="btn btn-primary w-50 text-center" href="#" style="float : right">Secondary</a></div>
+            <div class="row">
+                <div class="col-md-12 order-md-2">
+                    <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Gegevens:</span> </h4>
+                    
+                    @grid.GetHtml(
+              tableStyle: "grid",
+              headerStyle: "head",
+              alternatingRowStyle: "alt",
+              columns: grid.Columns(
+                  grid.Column("achternaam"),
+                  grid.Column("email"),
+                   grid.Column("telefoonnummer"),
+                  grid.Column("klantnummer"),
+                  grid.Column("incheck_datum"),
+                  grid.Column("uitcheck_datum"),
+                  grid.Column("aantal_personen"),
+                  grid.Column("huisdier"),
+                  grid.Column("factuurnummer"),
+                  grid.Column("status")
+                  )
+                  )
+
                 </div>
             </div>
         </div>
-        <div class="py-5 text-muted text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 my-4">
-                        <p class="mb-1">© 2017-2018 Company Name</p>
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a href="#">Privacy</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Terms</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Support</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+    </div>
+
+<div class="py-5 text-muted text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 my-4">
+                <p class="mb-1">© 2019 Mamaloe</p>
             </div>
         </div>
-        <div class="py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="py-5"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+</div>
 </body>
 </html>
