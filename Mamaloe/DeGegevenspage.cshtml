@@ -1,6 +1,6 @@
 ﻿@using WebMatrix.Data
 @{
-    Layout = "~/Shared/_Header.cshtml";
+    Layout = "~/Shared/_DeHeader.cshtml";
     Page.Title = "Gegevens";
     // zorgt voor de pagina titel en de layout.
 
@@ -101,7 +101,7 @@
         {
             if (DBManager.SetReservation(Request.Form["voornaam"], Request.Form["tussenvoegsel"], Request.Form["achternaam"], Request.Form["email"], Request.Form["telefoonnummer"], Request.Form["straat"], Request.Form["huisnummer"], Request.Form["woonplaats"], Request.Form["postcode"], Request.Form["land"], Request.Form["opmerking"], Request.Form["incheck_datum"], Request.Form["uitcheck_datum"], Request.Form["aantal_personen"].AsInt(), Request.Form["huisdier"].AsBool()))
             {
-                Response.Redirect("~/ReservationComplete.cshtml");
+                Response.Redirect("~/DeReservationComplete.cshtml");
             }
             else
             {
@@ -179,7 +179,7 @@
 
                             <li class="list-group-item"><b>Totaal prijs:&nbsp;</b>@Session["prijs"]</li>
                             @* Laat de ingevulde gegevens zien. *@
-                        </ul> <a class="btn mt-3 btn-warning w-100" href="ReservationComplete.cshtml">Bevestig</a>
+                        </ul> <a class="btn mt-3 btn-warning w-100" href="~/DeReservationComplete.cshtml">Bevestig</a>
                         @* Bevestigt de reservatie, en voegt de gegevens toe aan de database. *@
                     </div>
                 </div>
