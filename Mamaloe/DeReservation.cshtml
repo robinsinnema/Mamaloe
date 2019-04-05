@@ -108,7 +108,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h6 class="">Anzahl der Personen:(Max. 4)<input name="aantal_personen" value="" type="number" id="" class="form-control"></h6>
+                                <h6 class="">Anzahl der Personen:(Max. 4)<input name="aantal_personen" value="" type="number" min="0" max="4" id="" class="form-control"></h6>
                                 @Html.ValidationMessage("aantal_personen")
                                 @* Veld om het aantal personen in te vullen.*@
                             </div>
