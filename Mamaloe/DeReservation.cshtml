@@ -16,7 +16,9 @@
     Validation.RequireField("land", "Land ist erforderlich");
     Validation.RequireField("incheck_datum", "Anreisedatum ist erforderlich");
     Validation.RequireField("uitcheck_datum", "Auscheckdatum ist erforderlich");
-    Validation.RequireField("aantal_personen", "Anzahl der Personen ist erforderlich");
+    Validation.RequireField("aantal_volwassenen", "Anzahl der Erwachsene ist erforderlich");
+    Validation.RequireField("aantal_kinderen", "Anzahl der kinder ist erforderlich");
+    Validation.RequireField("aantal_nachten", "Anzahl der übernachtungen  ist erforderlich.");
     Validation.RequireField("huisdier", "Geben Sie an, ob Sie ein Haustier mitbringen möchten");
 
     //Laat een bericht zien als een veld niet ingevuld is.
@@ -38,13 +40,22 @@
             Session["opmerking"] = Request.Form["opmerking"];
             Session["incheck_datum"] = Request.Form["incheck_datum"];
             Session["uitcheck_datum"] = Request.Form["uitcheck_datum"];
-            Session["aantal_personen"] = Request.Form["aantal_personen"];
+            Session["aantal_volwassenen"] = Request.Form["aantal_volwassenen"];
+            Session["aantal_kinderen"] = Request.Form["aantal_kinderen"];
+            Session["aantal_nachten"] = Request.Form["aantal_nachten"];
             Session["huisdier"] = Request.Form["huisdier"];
 
             Response.Redirect("~/DeGegevenspage.cshtml");
             // Vraagt de gegevens op uit de ingevoerde velden, en verwijst naar de gegevenspagina.
         }
     }
+    bool isEmpty = Request.Form["aantal_nachten"].IsEmpty() || Request.Form["aantal_wolwassenen"].IsEmpty() || Request.Form["aantal_kinderen"].IsEmpty();
+    int een = Request.Form["aantal_nachten"].AsInt();
+    int twee = Request.Form["aantal_volwassenen"].AsInt();
+    int drie = Request.Form["aantal_kinderen"].AsInt();
+    int result = 0;
+    result = ((een * twee) * 35) + ((een * drie) * 25);
+    var prijs = result;
 
 }
 
@@ -109,28 +120,23 @@
                         <p>(Max.4 Menschen)</p>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="btn-group">
-                                    <button class="btn btn-warning dropdown-toggle" name="aantal_personen" data-toggle="dropdown">Erwachsene</button><br>
-                                    @Html.ValidationMessage("aantal_personen", new { @style = "color:red" })
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item">1</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item">2</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item">3</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item">4</a>
-                                    </div>
-                                </div>
+                                <h6 class="">Anzahl der erwachsenen:(Max. 4)<input name="aantal_volwassenen" placeholder="max 4" value="" type="number" min="1" max="4" id="" class="form-control"></h6>
+                                @Html.ValidationMessage("aantal_volwassenen", new { @style = "color:red" })
+                                @* Veld om het aantal personen in te vullen.*@
                             </div>
                             <div class="col-md-6">
-                                <div class="btn-group">
-                                    <button class="btn btn-warning dropdown-toggle" name="aantal_personen" data-toggle="dropdown"> Kinder</button>                   
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item">1</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item">2</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item">3</a>
-                                    </div>
-                                </div>
+                                <h6 class="">Anzahl der kinder:(Max. 3)<input name="aantal_kinderen" placeholder="max 3" value="" type="number" min="0" max="3" id="" class="form-control"></h6>
+                                @Html.ValidationMessage("aantal_kinderen", new { @style = "color:red" })
+                                @* Veld om het aantal personen in te vullen.*@
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="">Anzahl der übernachtungen :<input name="aantal_nachten" value="" type="number" id="" class="form-control"></h6>
+                                @Html.ValidationMessage("aantal_nachten", new { @style = "color:red" })
+                                @* Veld om het aantal personen in te vullen.*@
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="">Prijs:  <input type="text" name="prijs" class="form-control" value=€@result readonly></h6>
+                                @* Veld om het aantal personen in te vullen.*@
                             </div>
                             <div class="col-md-4 p-3">
                                 <div class="btn-group">
