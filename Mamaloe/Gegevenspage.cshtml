@@ -148,38 +148,39 @@
                         </div>
                         <ul class="list-group pl-3">
                             <li class="list-group-item"><b>Naam: &nbsp;</b>@Session["voornaam"]</li>
-                           
+
                             <li class="list-group-item"><b>Tussenvoegsel: &nbsp;</b>@Session["tussenvoegsel"]</li>
-                           
+
                             <li class="list-group-item"><b>Achternaam: &nbsp;</b>@Session["achternaam"]</li>
-                            
+
                             <li class="list-group-item"><b>Email:&nbsp;</b>@Session["email"]</li>
-                            
+
                             <li class="list-group-item"><b>Straat:&nbsp;</b>@Session["straat"]</li>
-                            
+
                             <li class="list-group-item"><b>Huisnummer:&nbsp;</b>@Session["huisnummer"]</li>
-                            
+
                             <li class="list-group-item"><b>Woonplaats:&nbsp;</b>@Session["woonplaats"]</li>
-                            
+
                             <li class="list-group-item"><b>Postcode:&nbsp;</b>@Session["postcode"]</li>
-                            
+
                             <li class="list-group-item"><b>Telefoonnummer:&nbsp;</b>@Session["telefoonnummer"]</li>
-                            
+
                             <li class="list-group-item"><b>Land:&nbsp;</b>@Session["land"]</li>
                             <br>
                             <h5>Reservering</h5>
                             <li class="list-group-item"><b>Incheckdatum: &nbsp;</b>@Session["incheck_datum"]</li>
-                            
+
                             <li class="list-group-item"><b>uitcheckdatum: &nbsp;</b>@Session["uitcheck_datum"]</li>
-                            
+
                             <li class="list-group-item"><b>Aantal personen: &nbsp;</b>@Session["aantal_personen"]</li>
-                            
+
                             <li class="list-group-item"><b>Huisdieren:&nbsp;</b>@Session["huisdier"]</li>
-                            
+
                             <li class="list-group-item"><b>Totaal prijs:&nbsp;</b>@Session["prijs"]</li>
                             @* Laat de ingevulde gegevens zien. *@
-                        </ul> <a class="btn mt-3 btn-warning w-100" href="ReservationComplete.cshtml">Bevestig</a>
+                        </ul> <a class="btn mt-3 btn-warning w-100" href="ReservationComplete.cshtml?status=ok">Bevestig</a>
                         @* Bevestigt de reservatie, en voegt de gegevens toe aan de database. *@
+                        <a class="btn mt-3 btn-warning w-100" href="ReservationComplete.cshtml?status=cancel">Cancel</a>
                     </div>
                 </div>
             </div>

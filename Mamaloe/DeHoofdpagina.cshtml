@@ -63,36 +63,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 p-md-5 p-3 d-flex flex-column justify-content-center">
-                    <h4>Beschikbaarheid: </h4>
+                    <h4>Verfügbarkeit: </h4>
                     <div id="datepicker1"></div><br />
                     @* Roept het kaartje met datums aan. *@
                     <div>
                         @* Roept het kaartje met datums aan. *@
-                        <a class="btn btn-warning" href="~/DeReservation.cshtml">Reserveer</a>
+                        <a class="btn btn-warning" href="~/DeReservation.cshtml">Reservieren</a>
                         @* Knop om naar de reserveringspagina te gaan. *@
                     </div>
-                    <br>
-                    <div class="row">
-                        @*<div class="col-md-12">
-                    <h4 class="">Bereken hier uw prijs:</h4>
-                    <form method="post">
-                        Personen:
-                        <input name="txttwee" placeholder="max4." type="number" class="form-control" value="@Request.Form["txttwee"]" />
-                        Nachten:
-                        <input name="txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form["txteen"]" />
-                        <input type="text" name="prijs" class="form-control" value=€@result readonly>
-                        <br>
-                        <button class="btn btn-warning" type="submit">Bereken</button>
-                    </form>
-                </div>*@
-                    </div>
+                    <br>                    
                 </div>
                 <div class="col-lg-4 p-md-5 p-3">
-                    <h3> Welkom op Mamaloe</h3>
+                    <h3> Willkommen zu Mamaloe</h3>
                     @* Header tekst, met hieronder de bijbehoorende tekst. *@
                     <p>
-                        Wilt u een stacaravan huren in friesland?
-                        Dit is een prachtige plek om even tot rust te komen en aan niets te denken. We bevinden ons in Rijs, Rijs staat bekend als een gastvriendelijk dorpje!
+                        Möchten Sie ein Mobilheim in Friesland mieten?
+                        Dies ist ein wunderschöner Ort um sich zu entspannen und über nichts zu denken. Wir sind in Rijs, Rijs ist bekannt als einen gastfreundliches Dorf!
                     </p>
                 </div>
                 <div class="col-md-4 p-md-5"><img class="img-fluid d-block" src="images/camping/20190329_142709_HDR.jpg"></div>
@@ -106,16 +92,16 @@
             <div class="col-lg-4 p-md-5 p-3 d-flex flex-column justify-content-center">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="">Bereken hier uw prijs:</h4>
+                        <h4 class=""> Berechnen hier dein preis:</h4>
                         <form method="post">
                             Personen:
                             <input name="txttwee" placeholder="Max 4." type="number" class="form-control" value="@Request.Form[" txttwee"]" />
-                            Nachten:
+                            Nächte:
                             <input name="txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form[" txteen"]" />
                             <input type="text" name="prijs" class="form-control" value=€@result readonly>
                             @* Invoer voor het berekenen van de totaalprijs, met aantal nachten en aantal personen. *@
                             <br>
-                            <button class="btn btn-warning" type="submit">Bereken</button>
+                            <button class="btn btn-warning" type="submit">Berechnen</button>
                             @* Knop om de prijs te berekenen. *@
                         </form>
                     </div>
@@ -123,10 +109,10 @@
             </div>
 
             <div class="col-lg-4 p-md-5 p-3">
-                <h3> Omgeving</h3>
+                <h3> Landschaft</h3>
                 @* Kopje met bijbehoorende tekst eronder. *@
                 <p>
-                    Rijs is een dorp in de gemeente De Friese Meren, in de Nederlandse provincie Friesland. Het ligt ten zuidoosten van Stavoren en Bakhuizen, aan de weg Oudemirdum - Hemelum. Het dorp ligt aan de noordoostkant van het Rijsterbos vlakbij het IJsselmeer.
+                    Rijs ist ein dorf in der gemeinde De Friese Meren, in der Niederländische Provinz Friesland. Es liegt südöstlich von Stavoren und Bakhuizen, auf der Straße Oudemirdum - Hemelum. Das Dorf liegt auf der Nordostseite des Rijsterbos in der Nähe des IJsselmeer.
                 </p>
             </div>
                 <div class="col-lg-4 p-3">

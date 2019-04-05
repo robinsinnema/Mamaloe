@@ -3,6 +3,31 @@
     Layout = "~/Shared/_Header.cshtml";
     Page.Title = "Reservatie Compleet";
     // zorgt voor de pagina titel en de layout.
+
+    
+    var statusInfo = Request.QueryString["status"] ?? null;
+
+    string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Mamaloe.mdf;Integrated Security=True";
+    string provider = "System.Data.SqlClient";
+    Database db = Database.OpenConnectionString(connectionString, provider);
+
+    if (statusInfo == "cancel")
+    {
+        Session.Abandon();
+        Response.Redirect("Hoofdpagina.cshtml");
+    }
+    else if (statusInfo == "ok")
+    {
+        var insertCommand = "INSERT INTO Klant (voornaam, tussenvoegsel, achternaam, email, telefoonnummer, straat, huisnummer, postcode, woonplaats, land) VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)";
+        db.Execute(insertCommand, Session["voornaam"], Session["tussenvoegsel"], Session["achternaam"], Session["email"], Session["telefoonnummer"], Session["straat"], Session["huisnummer"], Session["postcode"], Session["woonplaats"], Session["land"]);
+
+        var insert = "INSERT INTO Reservering (incheck_datum, uitcheck_datum, aantal_personen, huisdier) VALUES(@0, @1, @2, @3)";
+        db.Execute(insert, Session["incheck_datum"], Session["uitcheck_datum"], Session["aantal_personen"], Session["huisdier"]);
+        
+        Session.Clear();
+        Response.Redirect("ReservationComplete.cshtml?order=complete");
+    }
+}
 }
 <!DOCTYPE html>
 <html>

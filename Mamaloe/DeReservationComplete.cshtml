@@ -3,7 +3,32 @@
     Layout = "~/Shared/_DeHeader.cshtml";
     Page.Title = "Reservatie Compleet";
     // zorgt voor de pagina titel en de layout.
+
+    var statusInfo = Request.QueryString["status"] ?? null;
+
+    string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Mamaloe.mdf;Integrated Security=True";
+    string provider = "System.Data.SqlClient";
+    Database db = Database.OpenConnectionString(connectionString, provider);
+
+    if (statusInfo == "cancel")
+    {
+        Session.Abandon();
+        Response.Redirect("DeHoofdpagina.cshtml");
+    }
+    else if (statusInfo == "ok")
+    {
+        var insertCommand = "INSERT INTO Klant (voornaam, tussenvoegsel, achternaam, email, telefoonnummer, straat, huisnummer, postcode, woonplaats, land) VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)";
+        db.Execute(insertCommand, Session["voornaam"], Session["tussenvoegsel"], Session["achternaam"], Session["email"], Session["telefoonnummer"], Session["straat"], Session["huisnummer"], Session["postcode"], Session["woonplaats"], Session["land"]);
+
+        var insert = "INSERT INTO Reservering (incheck_datum, uitcheck_datum, aantal_personen, huisdier) VALUES(@0, @1, @2, @3)";
+        db.Execute(insert, Session["incheck_datum"], Session["uitcheck_datum"], Session["aantal_personen"], Session["huisdier"]);
+        
+        Session.Clear();
+        Response.Redirect("DeReservationComplete.cshtml?order=complete");
+    }
+
 }
+
 <!DOCTYPE html>
 <html>
 
@@ -18,9 +43,9 @@
             <div class="row" style="">
                 <div class="text-center col-md-7 mx-auto">
                     <i class="fa d-block fa-bullseye fa-5x mb-4 text-dark"></i>
-                    <h2><b>Bedankt voor het reserveren!</b></h2>
+                    <h2><b>Vielen Dank für die Buchung!</b></h2>
                     @* Header tekst. *@
-                    <p class="lead" contenteditable="false" style="">Er wordt een bevestigings mail gestuurd naar het onderstaande adres:<br><br>@Session["email"]</p>
+                    <p class="lead" contenteditable="false" style="">Eine Bestätigungs-E-Mail wird an die unten angegebene Adresse gesendet:<br><br>@Session["email"]</p>
                     @* Laat het email address zien. *@
                 </div>
             </div>
