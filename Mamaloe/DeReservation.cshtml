@@ -17,8 +17,8 @@
     Validation.RequireField("incheck_datum", "Anreisedatum ist erforderlich");
     Validation.RequireField("uitcheck_datum", "Auscheckdatum ist erforderlich");
     Validation.RequireField("aantal_volwassenen", "Anzahl der Erwachsene ist erforderlich");
-    Validation.RequireField("aantal_kinderen", "Anzahl der kinder ist erforderlich");
-    Validation.RequireField("aantal_nachten", "Anzahl der übernachtungen  ist erforderlich.");
+    Validation.RequireField("aantal_kinderen", "Anzahl der Kinder ist erforderlich");
+    Validation.RequireField("aantal_nachten", "Anzahl der Übernachtungen  ist erforderlich.");
     Validation.RequireField("huisdier", "Geben Sie an, ob Sie ein Haustier mitbringen möchten");
 
     //Laat een bericht zien als een veld niet ingevuld is.
@@ -120,22 +120,22 @@
                         <p>(Max.4 Menschen)</p>
                         <div class="row">
                             <div class="col-md-6">
-                                <h6 class="">Anzahl der erwachsenen:(Max. 4)<input name="aantal_volwassenen" placeholder="max 4" value="" type="number" min="1" max="4" id="" class="form-control"></h6>
+                                <h6 class="">Anzahl der Erwachsenen:(Max. 4)<input name="aantal_volwassenen" placeholder="max 4" value="" type="number" min="1" max="4" id="" class="form-control"></h6>
                                 @Html.ValidationMessage("aantal_volwassenen", new { @style = "color:red" })
                                 @* Veld om het aantal personen in te vullen.*@
                             </div>
                             <div class="col-md-6">
-                                <h6 class="">Anzahl der kinder:(Max. 3)<input name="aantal_kinderen" placeholder="max 3" value="" type="number" min="0" max="3" id="" class="form-control"></h6>
+                                <h6 class="">Anzahl der Kinder:(Max. 3)<input name="aantal_kinderen" placeholder="max 3" value="" type="number" min="0" max="3" id="" class="form-control"></h6>
                                 @Html.ValidationMessage("aantal_kinderen", new { @style = "color:red" })
                                 @* Veld om het aantal personen in te vullen.*@
                             </div>
                             <div class="col-md-6">
-                                <h6 class="">Anzahl der übernachtungen :<input name="aantal_nachten" value="" type="number" id="" class="form-control"></h6>
+                                <h6 class="">Anzahl der Übernachtungen :<input name="aantal_nachten" value="" type="number" id="" class="form-control"></h6>
                                 @Html.ValidationMessage("aantal_nachten", new { @style = "color:red" })
                                 @* Veld om het aantal personen in te vullen.*@
                             </div>
                             <div class="col-md-6">
-                                <h6 class="">Prijs:  <input type="text" name="prijs" class="form-control" value=€@result readonly></h6>
+                                <h6 class="">Preis:  <input type="text" name="prijs" class="form-control" value=€@result readonly></h6>
                                 @* Veld om het aantal personen in te vullen.*@
                             </div>
                             <div class="col-md-4 p-3">
