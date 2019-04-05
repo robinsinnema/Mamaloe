@@ -16,7 +16,9 @@
     Validation.RequireField("land", "Land is verplicht");
     Validation.RequireField("incheck_datum", "Incheck datum is verplicht");
     Validation.RequireField("uitcheck_datum", "Uitcheck datum is verplicht");
-    Validation.RequireField("aantal_personen", "Aantal personen is verplicht en mag maximaal 4 personen zijn");
+    Validation.RequireField("aantal_volwassenen", "Aantal volwassenen is verplicht en mag maximaal 4 personen zijn");
+    Validation.RequireField("aantal_kinderen", "Aantal kinderen is verplicht en mag maximaal 3 personen zijn");
+    Validation.RequireField("aantal_nachten", "Aantal nachten is verplicht.");
     Validation.RequireField("huisdier", "Geef aan of u een huisdier wilt meenemen");
 
     //Laat een bericht zien als een veld niet ingevuld is door middel van @Html.ValidationMessage.
@@ -38,7 +40,9 @@
             Session["opmerking"] = Request.Form["opmerking"];
             Session["incheck_datum"] = Request.Form["incheck_datum"];
             Session["uitcheck_datum"] = Request.Form["uitcheck_datum"];
-            Session["aantal_personen"] = Request.Form["aantal_personen"];
+            Session["aantal_volwassenen"] = Request.Form["aantal_volwassenen"];
+            Session["aantal_kinderen"] = Request.Form["aantal_kinderen"];
+            Session["aantal_nachten"] = Request.Form["aantal_nachten"];
             Session["huisdier"] = Request.Form["huisdier"];
 
             Response.Redirect("~/Gegevenspage.cshtml");
@@ -46,6 +50,13 @@
             // Vraagt de gegevens op uit de ingevoerde velden, en verwijst naar de gegevenspagina.
         }
     }
+    bool isEmpty = Request.Form["aantal_nachten"].IsEmpty() || Request.Form["aantal_wolwassenen"].IsEmpty() || Request.Form["aantal_kinderen"].IsEmpty();
+    int een = Request.Form["aantal_nachten"].AsInt();
+    int twee = Request.Form["aantal_volwassenen"].AsInt();
+    int drie = Request.Form["aantal_kinderen"].AsInt();
+    int result = 0;
+    result = ((een * twee) * 35) + ((een * drie) * 25);
+    var prijs = result;
 
 }
 
@@ -54,7 +65,7 @@
 <html>
 
 <head>
-   
+
     <script>
         $(function () {
             $("#datepicker1").datepicker();
@@ -74,7 +85,7 @@
 </head>
 
 <body class="bg-light">
-    
+
     <div class="py-5">
         <div class="container">
             <div class="row">
@@ -110,30 +121,25 @@
                         <p>(Max.4 personen)</p>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="btn-group">
-                                    <button class="btn btn-warning dropdown-toggle" name="aantal_personen" data-toggle="dropdown"> Volwassenen</button>
-                                    @Html.ValidationMessage("aantal_personen", new { @style = "color:red" })
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item">1</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item">2</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item">3</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item">4</a>
-                                    </div>
-                                </div>
+                                <h6 class="">Aantal volwassenen:(Max. 4)<input name="aantal_volwassenen" placeholder="max 4" value="" type="number" min="1" max="4" id="" class="form-control"></h6>
+                                @Html.ValidationMessage("aantal_volwassenen", new { @style = "color:red" })
+                                @* Veld om het aantal personen in te vullen.*@
                             </div>
                             <div class="col-md-6">
-                                <div class="btn-group">
-                                    <button class="btn btn-warning dropdown-toggle" name="aantal_personen" data-toggle="dropdown"> Kinderen</button>
-                                    @Html.ValidationMessage("aantal_personen", new { @style = "color:red" })
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item">1</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item">2</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item">3</a>
-                                    </div>
-                                </div>
+                                <h6 class="">Aantal kinderen:(Max. 3)<input name="aantal_kinderen" placeholder="max 3" value="" type="number" min="0" max="3" id="" class="form-control"></h6>
+                                @Html.ValidationMessage("aantal_kinderen", new { @style = "color:red" })
+                                @* Veld om het aantal personen in te vullen.*@
                             </div>
+                            <div class="col-md-6">
+                                <h6 class="">Aantal Nachten:<input name="aantal_nachten" value="" type="number" id="" class="form-control"></h6>
+                                @Html.ValidationMessage("aantal_nachten", new { @style = "color:red" })
+                                @* Veld om het aantal personen in te vullen.*@
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="">Prijs:  <input type="text" name="prijs" class="form-control" value=€@result readonly></h6>
+                                @* Veld om het aantal personen in te vullen.*@
+                            </div>
+
                             <div class="col-md-4 p-3">
                                 <div class="btn-group">
                                     <button class="btn btn-warning dropdown-toggle" name="huisdier" data-toggle="dropdown"> Huisdier</button>
@@ -145,10 +151,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>          
+                    </div>
 
-                <div class="col-md-8 order-md-1">
-                    <h4 class="mb-3">Persoonlijke gegevens</h4>
+                    <div class="col-md-8 order-md-1">
+                        <h4 class="mb-3">Persoonlijke gegevens</h4>
                         <div class="row">
                             <div class="col-md-4 mb-3" style="">
                                 <label for="firstName">Voornaam:</label>
@@ -242,14 +248,14 @@
                                 </div>
                             </div>
                         </div>
-                  <button class="btn btn-warning btn-lg btn-block" name="SubmitButton" type="submit">Reserveer</button>
-                    @* De verstuur knop die je naar de volgende pagina stuurt. *@
-                </div>
+                        <button class="btn btn-warning btn-lg btn-block" name="SubmitButton" type="submit">Reserveer</button>
+                        @* De verstuur knop die je naar de volgende pagina stuurt. *@
+                    </div>
                 </div>
             </form>
         </div>
     </div>
-    
+
 </body>
 
 </html>
