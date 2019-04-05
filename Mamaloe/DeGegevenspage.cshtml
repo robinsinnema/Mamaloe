@@ -1,10 +1,8 @@
 ﻿@using WebMatrix.Data
 @{
-    Layout = "~/Shared/_DeHeader.cshtml";
+    Layout = "~/Shared/_Header.cshtml";
     Page.Title = "Gegevens";
     // zorgt voor de pagina titel en de layout.
-
-    var resultMessage = "";
 
     var voornaam = "";
     var tussenvoegsel = "";
@@ -16,6 +14,7 @@
     var postcode = "";
     var woonplaats = "";
     var land = "";
+    var opmerking = "";
     var incheck_datum = "";
     var uitcheck_datum = "";
     var aantal_personen = "";
@@ -62,6 +61,10 @@
     {
         land = (string)Session["land"];
     }
+    if (Session["opmerking"] != null)
+    {
+        opmerking = (string)Session["opmerking"];
+    }
     if (Session["incheck_datum"] != null)
     {
         incheck_datum = (string)Session["incheck_datum"];
@@ -79,7 +82,6 @@
         huisdier = (string)Session["huisdier"];
     }
     // Voor het tijdelijk opslaan en het laten zien van de ingevoerde gegevens.
-
     if (IsPost && Validation.IsValid())
     {
         voornaam = Request.Form["voornaam"];
@@ -92,35 +94,23 @@
         postcode = Request.Form["postcode"];
         woonplaats = Request.Form["woonplaats"];
         land = Request.Form["land"];
+        opmerking = Request.Form["opmerking"];
         incheck_datum = Request.Form["incheck_datum"];
         uitcheck_datum = Request.Form["uitcheck_datum"];
         aantal_personen = Request.Form["aantal_personen"];
         huisdier = Request.Form["huisdier"];
-        // Vraagt de ingevoerde gegevens op.
-        if (IsPost && Validation.IsValid())
-        {
-            if (DBManager.SetReservation(Request.Form["voornaam"], Request.Form["tussenvoegsel"], Request.Form["achternaam"], Request.Form["email"], Request.Form["telefoonnummer"], Request.Form["straat"], Request.Form["huisnummer"], Request.Form["woonplaats"], Request.Form["postcode"], Request.Form["land"], Request.Form["opmerking"], Request.Form["incheck_datum"], Request.Form["uitcheck_datum"], Request.Form["aantal_personen"].AsInt(), Request.Form["huisdier"].AsBool()))
-            {
-                Response.Redirect("~/DeReservationComplete.cshtml");
-            }
-            else
-            {
-                resultMessage = "Er is een fout opgetreden.";
-            }
-
-        }
-        // Zet de gegevens in de database, en als er een fout is komt er een foutmelding.
     }
+
 }
 <!DOCTYPE html>
 <html>
 
 <head>
-    
+
 </head>
 
 <body class="bg-light">
-  
+
     <div class="py-5">
         <div class="container" align="center">
             <div class="row">
@@ -135,7 +125,6 @@
                     <div class="card-body p-4">
                         <div class="row">
                             <div class="col-8 col-md-12">
-                                @resultMessage
                                 <h3 class="">Ihre Angaben</h3>
                                 @* Header tekst. *@
                                 <h6>Persönliche Informationen</h6>
@@ -164,18 +153,17 @@
                             <li class="list-group-item"><b>Auscheckdatum: &nbsp;</b>@Session["uitcheck_datum"]</li>
                             <li class="list-group-item"><b>Anzahl der Personen: &nbsp;</b>@Session["aantal_personen"]</li>
                             <li class="list-group-item"><b>Haustier:&nbsp;</b>@Session["huisdier"]</li>
-                            <li class="list-group-item"><b>Gesamtpreis:&nbsp;</b>@Session["prijs"]</li>
                             @* Laat de ingevulde gegevens zien. *@
                         </ul> <a class="btn mt-3 btn-warning w-100" href="~/DeReservationComplete.cshtml?status=ok">Bestätigen</a>
                         @* Bevestigt de reservatie, en voegt de gegevens toe aan de database. *@
-                              <a class="btn mt-3 btn-warning w-100" href="~/DeReservationComplete.cshtml?status=cancel">stornieren</a>
+                        <a class="btn mt-3 btn-warning w-100" href="~/DeReservationComplete.cshtml?status=cancel">stornieren</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-   
+
 
 </body>
 </html>

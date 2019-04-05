@@ -1,8 +1,11 @@
 ﻿@using WebMatrix.Data;
 @{
-    Layout = "~/Shared/_DeHeader.cshtml";
+    Layout = "~/Shared/_Header.cshtml";
     Page.Title = "Reservatie Compleet";
     // zorgt voor de pagina titel en de layout.
+
+    Random random = new Random();
+    int randomNumber = random.Next(0, 10000);
 
     var statusInfo = Request.QueryString["status"] ?? null;
 
@@ -17,13 +20,16 @@
     }
     else if (statusInfo == "ok")
     {
-        var insertCommand = "INSERT INTO Klant (voornaam, tussenvoegsel, achternaam, email, telefoonnummer, straat, huisnummer, postcode, woonplaats, land) VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9)";
-        db.Execute(insertCommand, Session["voornaam"], Session["tussenvoegsel"], Session["achternaam"], Session["email"], Session["telefoonnummer"], Session["straat"], Session["huisnummer"], Session["postcode"], Session["woonplaats"], Session["land"]);
+        var reserverings_datum = DateTime.Now;
+        var status = "Gereseveerd";
+        var unieknummer = randomNumber;
 
-        var insert = "INSERT INTO Reservering (incheck_datum, uitcheck_datum, aantal_personen, huisdier) VALUES(@0, @1, @2, @3)";
-        db.Execute(insert, Session["incheck_datum"], Session["uitcheck_datum"], Session["aantal_personen"], Session["huisdier"]);
-        
-        Session.Clear();
+        var insertCommand = "INSERT INTO Klant (klantnummer, voornaam, tussenvoegsel, achternaam, email, telefoonnummer, straat, huisnummer, postcode, woonplaats, land) VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10)";
+        db.Execute(insertCommand, unieknummer, Session["voornaam"], Session["tussenvoegsel"], Session["achternaam"], Session["email"], Session["telefoonnummer"], Session["straat"], Session["huisnummer"], Session["postcode"], Session["woonplaats"], Session["land"]);
+
+        var insert = "INSERT INTO Reservering (klantnummer, reserverings_datum, opmerking, incheck_datum, uitcheck_datum, aantal_personen, huisdier, factuurnummer, status) VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8)";
+        db.Execute(insert, unieknummer, reserverings_datum, Session["opmerking"], Session["incheck_datum"], Session["uitcheck_datum"], Session["aantal_personen"], Session["huisdier"], unieknummer, status);
+
         Response.Redirect("DeReservationComplete.cshtml?order=complete");
     }
 
@@ -33,11 +39,11 @@
 <html>
 
 <head>
-   
+
 </head>
 
 <body class="bg-light">
-    
+
     <div class="py-5" style="">
         <div class="container">
             <div class="row" style="">
@@ -52,7 +58,7 @@
         </div>
     </div>
 
-  
+
 </body>
 
 </html>

@@ -4,8 +4,6 @@
     Page.Title = "Gegevens";
     // zorgt voor de pagina titel en de layout.
 
-    var resultMessage = "";
-
     var voornaam = "";
     var tussenvoegsel = "";
     var achternaam = "";
@@ -16,12 +14,13 @@
     var postcode = "";
     var woonplaats = "";
     var land = "";
+    var opmerking = "";
     var incheck_datum = "";
     var uitcheck_datum = "";
     var aantal_personen = "";
     var huisdier = "";
     // Variabelen Die nodig zijn voor de invoer van de gegevens in de database.
-    
+
     if (Session["voornaam"] != null)
     {
         voornaam = (string)Session["voornaam"];
@@ -62,6 +61,10 @@
     {
         land = (string)Session["land"];
     }
+    if (Session["opmerking"] != null)
+    {
+        opmerking = (string)Session["opmerking"];
+    }
     if (Session["incheck_datum"] != null)
     {
         incheck_datum = (string)Session["incheck_datum"];
@@ -91,26 +94,15 @@
         postcode = Request.Form["postcode"];
         woonplaats = Request.Form["woonplaats"];
         land = Request.Form["land"];
+        opmerking = Request.Form["opmerking"];
         incheck_datum = Request.Form["incheck_datum"];
         uitcheck_datum = Request.Form["uitcheck_datum"];
         aantal_personen = Request.Form["aantal_personen"];
         huisdier = Request.Form["huisdier"];
-        // Vraagt de ingevoerde gegevens op.
-        if (IsPost && Validation.IsValid())
-        {
-            if (DBManager.SetReservation(Request.Form["voornaam"], Request.Form["tussenvoegsel"], Request.Form["achternaam"], Request.Form["email"], Request.Form["telefoonnummer"], Request.Form["straat"], Request.Form["huisnummer"], Request.Form["woonplaats"], Request.Form["postcode"], Request.Form["land"], Request.Form["opmerking"], Request.Form["incheck_datum"], Request.Form["uitcheck_datum"], Request.Form["aantal_personen"].AsInt(), Request.Form["huisdier"].AsBool()))
-            {
-                Response.Redirect("~/ReservationComplete.cshtml");
-            }
-            else
-            {
-                resultMessage = "Er is een fout opgetreden.";
-            }
-
-        }
-        // Zet de gegevens in de database, en als er een fout is komt er een foutmelding.
     }
+
 }
+
 <!DOCTYPE html>
 <html>
 
@@ -134,7 +126,6 @@
                     <div class="card-body p-4">
                         <div class="row">
                             <div class="col-8 col-md-12">
-                                @resultMessage
                                 <h3 class="">Uw gegevens</h3>
                                 @* Header tekst. *@
                                 <h6>Persoonlijke gegevens</h6>
@@ -168,6 +159,8 @@
                             <li class="list-group-item"><b>Land:&nbsp;</b>@Session["land"]</li>
                             <br>
                             <h5>Reservering</h5>
+                            <li class="list-group-item"><b>Opmerking &nbsp;</b>@Session["opmerking"]</li>
+
                             <li class="list-group-item"><b>Incheckdatum: &nbsp;</b>@Session["incheck_datum"]</li>
 
                             <li class="list-group-item"><b>uitcheckdatum: &nbsp;</b>@Session["uitcheck_datum"]</li>
@@ -175,8 +168,6 @@
                             <li class="list-group-item"><b>Aantal personen: &nbsp;</b>@Session["aantal_personen"]</li>
 
                             <li class="list-group-item"><b>Huisdieren:&nbsp;</b>@Session["huisdier"]</li>
-
-                            <li class="list-group-item"><b>Totaal prijs:&nbsp;</b>@Session["prijs"]</li>
                             @* Laat de ingevulde gegevens zien. *@
                         </ul> <a class="btn mt-3 btn-warning w-100" href="ReservationComplete.cshtml?status=ok">Bevestig</a>
                         @* Bevestigt de reservatie, en voegt de gegevens toe aan de database. *@
