@@ -43,19 +43,20 @@
 
 <body class="bg-light">
     
-    <div class="py-5" style="">
-        <div class="container">
-            <div class="row" style="">
-                <div class="text-center col-md-7 mx-auto">
-                    <i class="fa d-block fa-bullseye fa-5x mb-4 text-dark"></i>
-                    <h2><b>Bedankt voor het reserveren!</b></h2>
-                    @* Header tekst. *@
-                    <p class="lead" contenteditable="false" style="">Er wordt een bevestigings mail gestuurd naar het onderstaande adres:<br><br>@Session["email"]</p>
-                    @* Laat het email address zien. *@
-                </div>
+<div class="py-5" style="">
+    <div class="container">
+        <div class="row" style="">
+            <div class="text-center col-md-7 mx-auto">
+                <i class="fa d-block fa-bullseye fa-5x mb-4 text-dark"></i>
+                <h2><b>Bedankt voor het reserveren!</b></h2>
+                @* Header tekst. *@
+                <p class="lead" contenteditable="false">Er wordt een bevestigings mail gestuurd naar het onderstaande adres:<br><br>@Session["email"] <br> De reservering is pas bevestigt als u heeft betaald. Er word een factuur en verdere instructies naar uw email gestuurd.</p>
+                @* Laat het email address zien. *@
             </div>
         </div>
     </div>
+</div>
+<a class="btn btn-warning" href="Hoofdpagina.cshtml" >Naar hoofdpagina</a>
 
   
 </body>

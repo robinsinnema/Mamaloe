@@ -5,19 +5,19 @@
     Page.Title = "Reservatie";
     // zorgt voor de pagina titel en de layout.
 
-    Validation.RequireField("voornaam", "Voornaam is verplicht");
-    Validation.RequireField("achternaam", "Achternaam is verplicht");
-    Validation.RequireField("email", "Email is verplicht");
-    Validation.RequireField("telefoonnummer", "Telefoonnummer is verplicht");
-    Validation.RequireField("straat", "Straat is verplicht");
-    Validation.RequireField("huisnummer", "Huisnummer is verplicht");
-    Validation.RequireField("postcode", "Postcode is verplicht");
-    Validation.RequireField("woonplaats", "Plaats is verplicht");
-    Validation.RequireField("land", "Land is verplicht");
-    //Validation.RequireField("incheck_datum", "Incheck datum is verplicht");
-    //Validation.RequireField("uitcheck_datum", "Uitcheck datum is verplicht");
-    //Validation.RequireField("aantal_personen", "Aantal personen is verplicht en mag maximaal 4 personen zijn");
-    //Validation.RequireField("huisdier", "Geef aan of u een huisdier wilt meenemen");
+    Validation.RequireField("voornaam", "Vorname ist erforderlich");
+    Validation.RequireField("achternaam", "Nachname ist erforderlich");
+    Validation.RequireField("email", "Email ist erforderlich");
+    Validation.RequireField("telefoonnummer", "Telefonnummer ist erforderlich");
+    Validation.RequireField("straat", "Straße ist erforderlich");
+    Validation.RequireField("huisnummer", "Hausnummer ist erforderlich");
+    Validation.RequireField("postcode", "Postleitzahl ist erforderlich");
+    Validation.RequireField("woonplaats", "Wohnort ist erforderlich");
+    Validation.RequireField("land", "Land ist erforderlich");
+    Validation.RequireField("incheck_datum", "Anreisedatum ist erforderlich");
+    Validation.RequireField("uitcheck_datum", "Auscheckdatum ist erforderlich");
+    Validation.RequireField("aantal_personen", "Anzahl der Personen ist erforderlich");
+    Validation.RequireField("huisdier", "Geben Sie an, ob Sie ein Haustier mitbringen möchten");
 
     //Laat een bericht zien als een veld niet ingevuld is.
 
@@ -95,39 +95,55 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h6 class="">Anreisedatum:<input name="incheck_datum" value="" type="text" id="datepicker2" class="form-control"></h6>
-                                @Html.ValidationMessage("incheck_datum")
+                                @Html.ValidationMessage("incheck_datum", new { @style = "color:red" })
                                 @* Vraaggt de incheckdatum op door middel van de datepicker. *@
                             </div>
                             <div class="col-md-6">
                                 <div class="col-md-14">
                                     <h6 class="">Auscheckdatum:<input name="uitcheck_datum" value="" type="text" id="datepicker3" class="form-control"></h6>
-                                    @Html.ValidationMessage("uitcheck_datum")
+                                    @Html.ValidationMessage("uitcheck_datum", new { @style = "color:red" })
                                     @* Vraaggt de checkout-datum op door middel van de datepicker. *@
                                 </div>
                             </div>
                         </div>
+                        <p>(Max.4 Menschen)</p>
                         <div class="row">
                             <div class="col-md-6">
-                                <h6 class="">Anzahl der Personen:(Max. 4)<input name="aantal_personen" value="" type="number" min="0" max="4" id="" class="form-control"></h6>
-                                @Html.ValidationMessage("aantal_personen")
-                                @* Veld om het aantal personen in te vullen.*@
-                            </div>
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6">
-                                <div class="col-md-14">
-                                    <h6 class="">Haustier:<input name="huisdier" value="" type="text" id="" class="form-control"></h6>
-                                    @Html.ValidationMessage("huisdier")
-                                    @* Veld om een huidsier in te vullen.*@
+                                <div class="btn-group">
+                                    <button class="btn btn-warning dropdown-toggle" name="aantal_personen" data-toggle="dropdown">Erwachsene</button><br>
+                                    @Html.ValidationMessage("aantal_personen", new { @style = "color:red" })
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item">1</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item">2</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item">3</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item">4</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6"></div>
-                        </div>
-                        <br />
-            
+                            <div class="col-md-6">
+                                <div class="btn-group">
+                                    <button class="btn btn-warning dropdown-toggle" name="aantal_personen" data-toggle="dropdown"> Kinder</button>                   
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item">1</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item">2</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item">3</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 p-3">
+                                <div class="btn-group">
+                                    <button class="btn btn-warning dropdown-toggle" name="huisdier" data-toggle="dropdown"> Haustier</button>
+                                    @Html.ValidationMessage("huisdier", new { @style = "color:red" })
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item">Ja</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item">Nein</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                      
                     </div>
 
                     <div class="col-md-8 order-md-1">
@@ -136,7 +152,7 @@
                             <div class="col-md-4 mb-3" style="">
                                 <label for="firstName">Vorname:</label>
                                 <input type="text" name="voornaam" class="form-control" id="firstName" placeholder="" value="" required="">
-                                @Html.ValidationMessage("voornaam")
+                                @Html.ValidationMessage("voornaam", new { @style = "color:red" })
                                 @* Veld om een voornaam in te vullen.*@
                             </div>
                             <div class="col-md-4 mb-3" style="">
@@ -147,14 +163,14 @@
                             <div class="col-md-4 mb-3" style="">
                                 <label for="lastName">Nachname:</label>
                                 <input type="text" name="achternaam" class="form-control" id="lastName" placeholder="" value="" required="">
-                                @Html.ValidationMessage("achternaam")
+                                @Html.ValidationMessage("achternaam", new { @style = "color:red" })
                                 @* Veld om een voornaam in te vullen.*@
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="email" contenteditable="false">Email:<span class="text-muted"></span></label>
                             <input type="email" name="email" class="form-control" id="email" placeholder="">
-                            @Html.ValidationMessage("email")
+                            @Html.ValidationMessage("email", new { @style = "color:red" })
                             @* Veld om een email in te vullen.*@
                         </div>
                         <div class="row">
@@ -162,7 +178,7 @@
                                 <div class="col-md-12 mb-3">
                                     <label for="straat">Straße:</label>
                                     <input type="text" name="straat" class="form-control" id="straat" placeholder="" value="" required="">
-                                    @Html.ValidationMessage("straat")
+                                    @Html.ValidationMessage("straat", new { @style = "color:red" })
                                     @* Veld om een straatnaam in te vullen.*@
                                 </div>
                             </div>
@@ -170,7 +186,7 @@
                                 <div class="col-md-12 mb-3">
                                     <label for="huisnummer">Hausnummer:</label>
                                     <input type="text" name="huisnummer" class="form-control" id="huisnummer" placeholder="" value="" required="">
-                                    @Html.ValidationMessage("huisnummer")
+                                    @Html.ValidationMessage("huisnummer", new { @style = "color:red" })
                                     @* Veld om een huisnummer in te vullen.*@
                                 </div>
                             </div>
@@ -183,7 +199,7 @@
                                         <div class="col-md-12 mb-3">
                                             <label for="woonplaats">Wohnort:</label>
                                             <input type="text" name="woonplaats" class="form-control" id="woonplaats" placeholder="" value="" required="">
-                                            @Html.ValidationMessage("woonplaats")
+                                            @Html.ValidationMessage("woonplaats", new { @style = "color:red" })
                                             @* Veld om een woonplaats in te vullen.*@
                                         </div>
                                     </div>
@@ -191,7 +207,7 @@
                                         <div class="col-md-12 mb-3">
                                             <label for="postcode">Postleitzahl:</label>
                                             <input type="text" name="postcode" class="form-control" id="postcode" placeholder="" value="" required="">
-                                            @Html.ValidationMessage("postcode")
+                                            @Html.ValidationMessage("postcode", new { @style = "color:red" })
                                             @* Veld om een postcode in te vullen.*@
                                         </div>
                                     </div>
@@ -201,7 +217,7 @@
                                         <div class="col-md-12 mb-3" style="">
                                             <label for="telefoonnummer">Telefonnummer:</label>
                                             <input type="text" name="telefoonnummer" class="form-control" id="telefoonnummer" placeholder="" value="" required="">
-                                            @Html.ValidationMessage("telefoonnummer")
+                                            @Html.ValidationMessage("telefoonnummer", new { @style = "color:red" })
                                             @* Veld om een telefoonnummer in te vullen.*@
                                         </div>
                                     </div>
@@ -209,7 +225,7 @@
                                         <div class="col-md-12 mb-3">
                                             <label for="land">Land:</label>
                                             <input type="text" name="land" class="form-control" id="land" placeholder="" value="" required="">
-                                            @Html.ValidationMessage("land")
+                                            @Html.ValidationMessage("land", new { @style = "color:red" })
                                             @* Veld om een land in te vullen.*@
                                         </div>
                                     </div>
