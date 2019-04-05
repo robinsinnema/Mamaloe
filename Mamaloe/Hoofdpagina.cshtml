@@ -6,8 +6,9 @@
     bool isEmpty = Request.Form["txteen"].IsEmpty() || Request.Form["txttwee"].IsEmpty();
     int een = Request.Form["txteen"].AsInt();
     int twee = Request.Form["txttwee"].AsInt();
+    int drie = Request.Form["txtdrie"].AsInt();
     int result = 0;
-    result = (een * twee) * 35;
+    result = ((een * twee) * 35) + ((een * drie) * 25);
     var prijs = result;
     // berekent de prijs doormiddel van twee invoervelden. Verander 35 om de vermenevuldigingsprijs te veranderen.
 }
@@ -109,8 +110,10 @@
                     <div class="col-md-12">
                         <h4 class="">Bereken hier uw prijs:</h4>
                         <form method="post">
-                            Personen:
-                            <input name="txttwee" placeholder="Max 4." type="number" class="form-control" value="@Request.Form[" txttwee"]" />
+                            Volwassenen:
+                            <input name="txttwee" placeholder="Max 4." type="number" min="0" max="4" class="form-control" value="@Request.Form[" txttwee"]" />
+                            Kinderen:
+                            <input name="txtdrie" placeholder="Max 4." type="number" min="0" max="4" class="form-control" value="@Request.Form[" txtdrie"]" />
                             Nachten:
                             <input name="txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form[" txteen"]" />
                             <input type="text" name="prijs" class="form-control" value=€@result readonly>
