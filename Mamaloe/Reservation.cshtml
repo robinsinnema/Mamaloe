@@ -106,13 +106,13 @@
                         <div id="datepicker1"></div><br />
                         <div class="row">
                             <div class="col-md-6">
-                                <h6 class="">Incheckdatum:<input name="incheck_datum" value="" type="text" id="datepicker2" class="form-control"></h6>
+                                <h6 class="">Incheckdatum:<input name="incheck_datum" value="@Request["incheck_datum"]" type="text" id="datepicker2" class="form-control"></h6>
                                 @Html.ValidationMessage("incheck_datum", new { @style = "color:red" })
                                 @* Vraaggt de incheckdatum op door middel van de datepicker. *@
                             </div>
                             <div class="col-md-6">
                                 <div class="col-md-14">
-                                    <h6 class="">Uitcheckdatum:<input name="uitcheck_datum" value="" type="text" id="datepicker3" class="form-control"></h6>
+                                    <h6 class="">Uitcheckdatum:<input name="uitcheck_datum" value="@Request["uitcheck_datum"]" type="text" id="datepicker3" class="form-control"></h6>
                                     @Html.ValidationMessage("uitcheck_datum", new { @style = "color:red" })
                                     @* Vraaggt de checkout-datum op door middel van de datepicker. *@
                                 </div>
@@ -121,12 +121,12 @@
                         <p>(Max.4 personen)</p>
                         <div class="row">
                             <div class="col-md-6">
-                                <h6 class="">Aantal volwassenen:(Max. 4)<input name="aantal_volwassenen" placeholder="max 4" value="" type="number" min="1" max="4" id="" class="form-control"></h6>
+                                <h6 class="">Aantal volwassenen:(Max. 4)<input name="aantal_volwassenen" placeholder="max 4" value="@Request["aantal_volwassenen"]" type="number" min="1" max="4" id="" class="form-control"></h6>
                                 @Html.ValidationMessage("aantal_volwassenen", new { @style = "color:red" })
                                 @* Veld om het aantal personen in te vullen.*@
                             </div>
                             <div class="col-md-6">
-                                <h6 class="">Aantal kinderen:(Max. 3)<input name="aantal_kinderen" placeholder="max 3" value="" type="number" min="0" max="3" id="" class="form-control"></h6>
+                                <h6 class="">Aantal kinderen:(Max. 3)<input name="aantal_kinderen" placeholder="max 3" value="@Request["aantal_kinderen"]" type="number" min="0" max="3" id="" class="form-control"></h6>
                                 @Html.ValidationMessage("aantal_kinderen", new { @style = "color:red" })
                                 @* Veld om het aantal personen in te vullen.*@
                             </div>
@@ -158,25 +158,25 @@
                         <div class="row">
                             <div class="col-md-4 mb-3" style="">
                                 <label for="firstName">Voornaam:</label>
-                                <input type="text" name="voornaam" class="form-control" id="firstName" placeholder="" value="" required="">
+                                <input type="text" name="voornaam" class="form-control" id="firstName" placeholder="" value="@Request["voornaam"]" required="">
                                 @Html.ValidationMessage("voornaam", new { @style = "color:red" })
                                 @* Veld om een voornaam in te vullen.*@
                             </div>
                             <div class="col-md-4 mb-3" style="">
                                 <label for="tussenvoegsel">Tussenvoegsel:</label>
-                                <input type="text" name="tussenvoegsel" class="form-control" id="infix" placeholder="" value="" required="">
+                                <input type="text" name="tussenvoegsel" class="form-control" id="infix" placeholder="" value="@Request["tussenvoegsel"]" required="">
                                 @* Veld om een (niet verplicht) tussenvoegsel in te vullen.*@
                             </div>
                             <div class="col-md-4 mb-3" style="">
                                 <label for="lastName">Achternaam:</label>
-                                <input type="text" name="achternaam" class="form-control" id="lastName" placeholder="" value="" required="">
+                                <input type="text" name="achternaam" class="form-control" id="lastName" placeholder="" value="@Request["achternaam"]" required="">
                                 @Html.ValidationMessage("achternaam", new { @style = "color:red" })
                                 @* Veld om een achternaam in te vullen.*@
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="email" contenteditable="false">Email:<span class="text-muted"></span></label>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="">
+                            <input type="email" name="email" class="form-control" id="email" placeholder="" value="@Request["email"]">
                             @Html.ValidationMessage("email", new { @style = "color:red" })
                             @* Veld om een email in te vullen.*@
                         </div>
@@ -184,7 +184,7 @@
                             <div class="col-md-6">
                                 <div class="col-md-12 mb-3">
                                     <label for="straat">Straat:</label>
-                                    <input type="text" name="straat" class="form-control" id="straat" placeholder="" value="" required="">
+                                    <input type="text" name="straat" class="form-control" id="straat" placeholder="" value="@Request["straat"]" required="">
                                     @Html.ValidationMessage("straat", new { @style = "color:red" })
                                     @* Veld om een straatnaam in te vullen.*@
                                 </div>
@@ -192,7 +192,7 @@
                             <div class="col-md-6">
                                 <div class="col-md-12 mb-3">
                                     <label for="huisnummer">Huisnummer:</label>
-                                    <input type="text" name="huisnummer" class="form-control" id="huisnummer" placeholder="" value="" required="">
+                                    <input type="text" name="huisnummer" class="form-control" id="huisnummer" placeholder="" value="@Request["huisnummer"]" required="">
                                     @Html.ValidationMessage("huisnummer", new { @style = "color:red" })
                                     @* Veld om een huisnummer in te vullen.*@
                                 </div>
@@ -205,7 +205,7 @@
                                     <div class="col-md-6">
                                         <div class="col-md-12 mb-3">
                                             <label for="woonplaats">Woonplaats:</label>
-                                            <input type="text" name="woonplaats" class="form-control" id="woonplaats" placeholder="" value="" required="">
+                                            <input type="text" name="woonplaats" class="form-control" id="woonplaats" placeholder="" value="@Request["woonplaats"]" required="">
                                             @Html.ValidationMessage("woonplaats", new { @style = "color:red" })
                                             @* Veld om een woonplaats in te vullen.*@
                                         </div>
@@ -213,7 +213,7 @@
                                     <div class="col-md-6">
                                         <div class="col-md-12 mb-3">
                                             <label for="postcode">Postcode:</label>
-                                            <input type="text" name="postcode" class="form-control" id="postcode" placeholder="" value="" required="">
+                                            <input type="text" name="postcode" class="form-control" id="postcode" placeholder="" value="@Request["postcode"]" required="">
                                             @Html.ValidationMessage("postcode", new { @style = "color:red" })
                                             @* Veld om een postcode in te vullen.*@
                                         </div>
@@ -223,7 +223,7 @@
                                     <div class="col-md-6">
                                         <div class="col-md-12 mb-3" style="">
                                             <label for="telefoonnummer">Telefoonnummer:</label>
-                                            <input type="text" name="telefoonnummer" class="form-control" id="telefoonnummer" placeholder="" value="" required="">
+                                            <input type="text" name="telefoonnummer" class="form-control" id="telefoonnummer" placeholder="" value="@Request["telefoonnummer"]" required="">
                                             @Html.ValidationMessage("telefoonnummer", new { @style = "color:red" })
                                             @* Veld om een telefoonnummer in te vullen.*@
                                         </div>
@@ -231,7 +231,7 @@
                                     <div class="col-md-6">
                                         <div class="col-md-12 mb-3">
                                             <label for="land">Land:</label>
-                                            <input type="text" name="land" class="form-control" id="land" placeholder="" value="" required="">
+                                            <input type="text" name="land" class="form-control" id="land" placeholder="" value="@Request["land"]" required="">
                                             @Html.ValidationMessage("land", new { @style = "color:red" })
                                             @* Veld om een land in te vullen.*@
                                         </div>
@@ -241,7 +241,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group row">
                                             <label class="col-2">Opmerking:</label>
-                                            <div class="col-10"><textarea class="form-control" name="opmerking" value="" id="form35" rows="3" placeholder="Vul hier uw eventuele opmerking"></textarea></div>
+                                            <div class="col-10"><textarea class="form-control" name="opmerking" value="@Request["opmerking"]" id="form35" rows="3" placeholder="Vul hier uw eventuele opmerking"></textarea></div>
                                             @* Een opmerkingenveld. *@
                                         </div>
                                     </div>
