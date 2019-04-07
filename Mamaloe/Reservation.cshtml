@@ -120,8 +120,8 @@
                                 </div>
                             </div>
                         </div>
-                        <p>(Max.4 personen)</p>
                         @* ------------------------------------------------------------------- *@
+                        <br />
                         <div class="row">
                             <div class="col-md-6">
                                 <h6>Volwassenen: €35 per nacht.</h6>
@@ -134,12 +134,12 @@
                             @* ------------------------------------------------------------- *@
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h6 class="">Aantal volwassenen:(Max. 4)<input name="aantal_volwassenen" placeholder="max 4" value="@Request["aantal_volwassenen"]" type="number" min="1" max="4" id="" class="form-control"></h6>
+                                    <h6 class="">Volwassenen:(Max. 4)<input name="aantal_volwassenen" placeholder="max 4" value="@Request["aantal_volwassenen"]" type="number" min="1" max="4" id="" class="form-control"></h6>
                                     @Html.ValidationMessage("aantal_volwassenen", new { @style = "color:red" })
                                     @* Veld om het aantal personen in te vullen.*@
                                 </div>
                                 <div class="col-md-6">
-                                    <h6 class="">Aantal kinderen:(Max. 3)<input name="aantal_kinderen" placeholder="max 3" value="@Request["aantal_kinderen"]" type="number" min="0" max="3" id="" class="form-control"></h6>
+                                    <h6 class="">Kinderen:(Max. 3)<input name="aantal_kinderen" placeholder="max 3" value="@Request["aantal_kinderen"]" type="number" min="0" max="3" id="" class="form-control"></h6>
                                     @Html.ValidationMessage("aantal_kinderen", new { @style = "color:red" })
                                     @* Veld om het aantal personen in te vullen.*@
                                 </div>
@@ -148,9 +148,7 @@
                                     @Html.ValidationMessage("aantal_nachten", new { @style = "color:red" })
                                     @* Veld om het aantal personen in te vullen.*@
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="btn-group">
+                                <div class="col-md-6">
 
                                     <h6 class="">
                                         Huisdier:
@@ -159,8 +157,10 @@
                                             <option value="nee">Nee</option>
                                         </select>
                                     </h6>
+
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -248,15 +248,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
+                                          <div class="col-md-12">
                                             <div class="form-group row">
                                                 <label class="col-2">Opmerking:</label>
                                                 <div class="col-10"><textarea class="form-control" name="opmerking" value="@Request["opmerking"]" id="form35" rows="3" placeholder="Vul hier uw eventuele opmerking"></textarea></div>
                                                 @* Een opmerkingenveld. *@
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                             <button class="btn btn-warning btn-lg btn-block" name="SubmitButton" type="submit">Reserveer</button>
