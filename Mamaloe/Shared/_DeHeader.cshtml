@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 @* De Stylesheet *@
-<html>
 <style>
     .grid {
         border-collapse: collapse;
@@ -36,6 +35,7 @@
     }
 </style>
 @* Grid vormgeving *@
+<html>
 <head>
     <title>@Page.Title</title>
     @RenderSection("head", required: false)
@@ -61,15 +61,16 @@
 
     <nav class="navbar navbar-expand-md bg-warning navbar-light  fixed-top">
         <div class="container">
-            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar13" style="">
+            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar13" style="text-align:  center">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar13">
-                <a class="navbar-brand d-none d-md-block" href="~/DeHoofdpagina.cshtml"></a>
-                    <i class="fa d-inline fa-lg fa-stop-circle-o"></i>
-                    <b contenteditable="false"> Mamaloe</b>
+                <a class="navbar-brand d-none d-md-block" href="~/DeHoofdpagina.cshtml">
+                <i class="fa d-inline fa-lg fa-stop-circle-o"></i>
+                <b contenteditable="false"> Mamaloe</b>
                 @* Link naar de hoofdpagina als je op de Mamaloe naam klikt. *@
-                
+                </a>
+
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"> <a class="nav-link" href="~/DeHoofdpagina.cshtml">Hauptseite</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="~/DeReservation.cshtml">Reservieren</a> </li>

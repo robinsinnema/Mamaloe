@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 @* De Stylesheet *@
-<html>
 <style>
     .grid {
         border-collapse: collapse;
@@ -38,6 +37,7 @@
 
 </style>
 @* Grid vormgeving *@
+<html>
 <head>
     <title>@Page.Title</title>
     @RenderSection("head", required: false)
@@ -63,16 +63,16 @@
 
     <nav class="navbar navbar-expand-md bg-warning navbar-light  fixed-top">
         <div class="container">
-            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar13"  style="text-align: center" >
+            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar13" style="text-align: center">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar13">
                 <a class="navbar-brand d-none d-md-block" href="~/Hoofdpagina.cshtml">
                     <i class="fa d-inline fa-lg fa-stop-circle-o"></i>
                     <b contenteditable="false"> Mamaloe</b>
-                @* Link naar de hoofdpagina als je op de Mamaloe naam klikt. *@
+                    @* Link naar de hoofdpagina als je op de Mamaloe naam klikt. *@
                 </a>
-                <ul class="navbar-nav mx-auto" >
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item"> <a class="nav-link" href="Hoofdpagina.cshtml">Hoofdpagina</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="Reservation.cshtml">Reserveren</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="informatiepagina.cshtml">Informatie</a> </li>
@@ -105,10 +105,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 my-4">
-                    <p class="mb-1">Contact
+                    <p class="mb-1">
+                        Contact
                         <br>
                         Email: gertdraaisma@hotmail.com
-                        </p>
+                    </p>
                     <p class="mb-1">© 2019 Mamaloe</p>
                 </div>
             </div>
