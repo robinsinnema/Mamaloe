@@ -17,8 +17,10 @@
     var opmerking = "";
     var incheck_datum = "";
     var uitcheck_datum = "";
-    var aantal_personen = "";
+    var aantal_volwassenen = "";
+    var aantal_kinderen = "";
     var huisdier = "";
+    var prijs = 0;
     // Variabelen Die nodig zijn voor de invoer van de gegevens in de database.
 
     if (Session["voornaam"] != null)
@@ -73,13 +75,21 @@
     {
         uitcheck_datum = (string)Session["uitcheck_datum"];
     }
-    if (Session["aantal_personen"] != null)
+    if (Session["aantal_volwassenen"] != null)
     {
-        aantal_personen = (string)Session["aantal_personen"];
+        aantal_volwassenen = (string)Session["aantal_volwassenen"];
+    }
+    if (Session["aantal_kinderen"] != null)
+    {
+        aantal_kinderen = (string)Session["aantal_kinderen"];
     }
     if (Session["huisier"] != null)
     {
         huisdier = (string)Session["huisdier"];
+    }
+    if (Session["prijs"] != null)
+    {
+        prijs = (int)Session["prijs"];
     }
     // Voor het tijdelijk opslaan en het laten zien van de ingevoerde gegevens.
     if (IsPost && Validation.IsValid())
@@ -97,7 +107,8 @@
         opmerking = Request.Form["opmerking"];
         incheck_datum = Request.Form["incheck_datum"];
         uitcheck_datum = Request.Form["uitcheck_datum"];
-        aantal_personen = Request.Form["aantal_personen"];
+        aantal_volwassenen = Request.Form["aantal_volwassenen"];
+        aantal_kinderen = Request.Form["aantal_kinderen"];
         huisdier = Request.Form["huisdier"];
     }
 
@@ -151,8 +162,11 @@
                             <h5>Reservering</h5>
                             <li class="list-group-item"><b>Anreisedatum: &nbsp;</b>@Session["incheck_datum"]</li>
                             <li class="list-group-item"><b>Auscheckdatum: &nbsp;</b>@Session["uitcheck_datum"]</li>
-                            <li class="list-group-item"><b>Anzahl der Personen: &nbsp;</b>@Session["aantal_personen"]</li>
+                            <li class="list-group-item"><b>Anzahl der Erwachsene: &nbsp;</b>@Session["aantal_volwassenen"]</li>
+                            <li class="list-group-item"><b>Anzahl der Kinder: &nbsp;</b>@Session["aantal_kinderen"]</li>
                             <li class="list-group-item"><b>Haustier:&nbsp;</b>@Session["huisdier"]</li>
+                            <li class="list-group-item"><b>Preis:&nbsp;</b>@Session["prijs"]</li>
+
                             @* Laat de ingevulde gegevens zien. *@
                         </ul> <a class="btn mt-3 btn-warning w-100" href="~/DeReservationComplete.cshtml?status=ok">Bestätigen</a>
                         @* Bevestigt de reservatie, en voegt de gegevens toe aan de database. *@

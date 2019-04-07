@@ -20,7 +20,7 @@
     var aantal_volwassenen = "";
     var aantal_kinderen = "";
     var huisdier = "";
-    var prijs = "";
+    var prijs = 0;
     // Variabelen Die nodig zijn voor de invoer van de gegevens in de database.
 
     if (Session["voornaam"] != null)
@@ -89,7 +89,7 @@
     }
     if (Session["prijs"] != null)
     {
-        prijs = (string)Session["prijs"];
+        prijs = (int)Session["prijs"];
     }
     // Voor het tijdelijk opslaan en het laten zien van de ingevoerde gegevens.
     if (IsPost && Validation.IsValid())
