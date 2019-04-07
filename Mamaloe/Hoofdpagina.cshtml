@@ -11,6 +11,15 @@
     result = ((een * twee) * 35) + ((een * drie) * 25);
     var prijs = result;
     // berekent de prijs doormiddel van twee invoervelden. Verander 35 om de vermenevuldigingsprijs te veranderen.
+
+    string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Mamaloe.mdf;Integrated Security=True";
+
+    string provider = "System.Data.SqlClient";
+
+    Database db = Database.OpenConnectionString(connectionString, provider);
+    var selectedData = db.Query("SELECT incheck_datum,uitcheck_datum  FROM  Reservering ");
+    var grid = new WebGrid(source: selectedData, rowsPerPage: 4);
+    //Roept de database aan, en laat alles zien uit de tabel "reservering".
 }
 
 <!DOCTYPE html>
@@ -70,9 +79,18 @@
                     <div id="datepicker1"></div><br />
                     @* Roept het kaartje met datums aan. *@
                     <div>
-                        <a class="btn btn-warning" href="Reservation.cshtml">Reserveer</a>
-                        @* Knop om naar de reserveringspagina te gaan. *@
                     </div>
+                    @grid.GetHtml(
+            tableStyle: "grid",
+            headerStyle: "head",
+            alternatingRowStyle: "alt",
+            columns: grid.Columns(
+                grid.Column("incheck_datum"),
+                grid.Column("uitcheck_datum")
+                ))
+                    <a class="btn btn-warning" href="Reservation.cshtml">Reserveer</a>
+                    @* Knop om naar de reserveringspagina te gaan. *@
+
                     <br>
                     <div class="row">
                         @*<div class="col-md-12">
@@ -89,67 +107,67 @@
             </div>*@
                     </div>
                 </div>
-                <div class="col-lg-4 p-md-5 p-3">
-                    <h3> Welkom op Mamaloe</h3>
-                    @* Header tekst, met hieronder de bijbehoorende tekst. *@
-                    <p>
-                        Wilt u een stacaravan huren in friesland?
-                        Dit is een prachtige plek om even tot rust te komen en aan niets te denken. We bevinden ons in Rijs, Rijs staat bekend als een gastvriendelijk dorpje!
-                    </p>
-                </div>
-                <div class="col-md-4 p-md-5"><img class="img-fluid d-block" src="images/camping/20190329_142709_HDR.jpg"></div>
+                                <div class="col-lg-4 p-md-5 p-3">
+                                    <h3> Welkom op Mamaloe</h3>
+                @* Header tekst, met hieronder de bijbehoorende tekst. *@
+                                    <p>
+                                        Wilt u een stacaravan huren in friesland?
+                                            Dit is een prachtige plek om even tot rust te komen en aan niets te denken.We bevinden ons in Rijs, Rijs staat bekend als een gastvriendelijk dorpje!
+                                    </p>
+                                </div>
+                                <div class="col-md-4 p-md-5"><img class="img-fluid d-block" src="images/camping/20190329_142709_HDR.jpg"></div>
                 @* Laat een afbeelding zien naast de tekst. *@
-            </div>
-        </div>
-    </div>
-    <div class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 p-md-5 p-3 d-flex flex-column justify-content-center">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4 class="">Bereken hier uw prijs:</h4>
-                        <form method="post">
-                            Volwassenen:
-                            <input name="txttwee" placeholder="Max 4." type="number" min="0" max="4" class="form-control" value="@Request.Form[" txttwee"]" />
-                            Kinderen:
-                            <input name="txtdrie" placeholder="Max 4." type="number" min="0" max="4" class="form-control" value="@Request.Form[" txtdrie"]" />
-                            Nachten:
-                            <input name="txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form[" txteen"]" />
-                            <input type="text" name="prijs" class="form-control" value=€@result readonly>
-                            @* Invoer voor het berekenen van de totaalprijs, met aantal nachten en aantal personen. *@
-                            <br>
-                            <button class="btn btn-warning" type="submit">Bereken</button>
-                            @* Knop om de prijs te berekenen. *@
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 p-md-5 p-3">
-                <h3> Omgeving</h3>
-                @* Kopje met bijbehoorende tekst eronder. *@
-                <p>
-                    Rijs is een dorp in de gemeente De Friese Meren, in de Nederlandse provincie Friesland. Het ligt ten zuidoosten van Stavoren en Bakhuizen, aan de weg Oudemirdum - Hemelum. Het dorp ligt aan de noordoostkant van het Rijsterbos vlakbij het IJsselmeer.
-                </p>
-            </div>
-                <div class="col-lg-4 p-3">
-                    <div id="carousel2" class="carousel slide" data-ride="carousel" data-interval="5000">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active"> <img class="d-block w-100" src="images/camping/IMG_5302.JPG"> </div>
-                            <div class="carousel-item"> <img class="d-block w-100" src="images/omgeving/IMG_5306.JPG"> </div>
-                            <div class="carousel-item"> <img class="d-block w-100" src="images/omgeving/IMG_20190329_152110.jpg"> </div>
-                            <div class="carousel-item"> <img class="d-block w-100" src="images/caravan/totaalfoto.jpg"> </div>
+                            </div>
                         </div>
-                        @* Slideshow met afbeelding bron en het formaat. *@
-                        <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        </a>
-                        <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        </a>
-                        @* Knoppen om naar een andere afbeelding toe te gaan. *@
                     </div>
+                    <div class="py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 p-md-5 p-3 d-flex flex-column justify-content-center">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="">Bereken hier uw prijs:</h4>
+                                        <form method = "post" >
+                                            Volwassenen:
+                                            <input name = "txttwee" placeholder="Max 4." type="number" min="0" max="4" class="form-control" value="@Request.Form[" txttwee"]" />
+                                            Kinderen:
+                                            <input name = "txtdrie" placeholder="Max 4." type="number" min="0" max="4" class="form-control" value="@Request.Form[" txtdrie"]" />
+                                            Nachten:
+                                            <input name = "txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form[" txteen"]" />
+                                            <input type = "text" name="prijs" class="form-control" value=€@result readonly>
+                @* Invoer voor het berekenen van de totaalprijs, met aantal nachten en aantal personen. *@
+                                            <br>
+                                            <button class="btn btn-warning" type="submit">Bereken</button>
+                @* Knop om de prijs te berekenen. *@
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 p-md-5 p-3">
+                                <h3> Omgeving</h3>
+                @* Kopje met bijbehoorende tekst eronder. *@
+                                <p>
+                                    Rijs is een dorp in de gemeente De Friese Meren, in de Nederlandse provincie Friesland.Het ligt ten zuidoosten van Stavoren en Bakhuizen, aan de weg Oudemirdum - Hemelum.Het dorp ligt aan de noordoostkant van het Rijsterbos vlakbij het IJsselmeer.
+                                </p>
+                            </div>
+                                <div class="col-lg-4 p-3">
+                                    <div id = "carousel2" class="carousel slide" data-ride="carousel" data-interval="5000">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active"> <img class="d-block w-100" src="images/camping/IMG_5302.JPG"> </div>
+                                            <div class="carousel-item"> <img class="d-block w-100" src="images/omgeving/IMG_5306.JPG"> </div>
+                                            <div class="carousel-item"> <img class="d-block w-100" src="images/omgeving/IMG_20190329_152110.jpg"> </div>
+                                            <div class="carousel-item"> <img class="d-block w-100" src="images/caravan/totaalfoto.jpg"> </div>
+                                        </div>
+                @* Slideshow met afbeelding bron en het formaat. *@
+                                        <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        </a>
+                @* Knoppen om naar een andere afbeelding toe te gaan. *@
+                </div>
                 </div>
             </div>
         </div>
