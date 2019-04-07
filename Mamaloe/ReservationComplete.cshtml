@@ -27,8 +27,8 @@
         var insertCommand = "INSERT INTO Klant (klantnummer, voornaam, tussenvoegsel, achternaam, email, telefoonnummer, straat, huisnummer, postcode, woonplaats, land) VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10)";
         db.Execute(insertCommand, unieknummer, Session["voornaam"], Session["tussenvoegsel"], Session["achternaam"], Session["email"], Session["telefoonnummer"], Session["straat"], Session["huisnummer"], Session["postcode"], Session["woonplaats"], Session["land"]);
 
-        var insert = "INSERT INTO Reservering (klantnummer, reserverings_datum, opmerking, incheck_datum, uitcheck_datum, aantal_personen, huisdier, factuurnummer, status) VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8)";
-        db.Execute(insert, unieknummer, reserverings_datum, Session["opmerking"], Session["incheck_datum"], Session["uitcheck_datum"], Session["aantal_personen"], Session["huisdier"], unieknummer, status);
+        var insert = "INSERT INTO Reservering (klantnummer, reserverings_datum, opmerking, incheck_datum, uitcheck_datum, aantal_volwassenen, aantal_kinderen, huisdier, factuurnummer, status, prijs) VALUES(@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10)";
+        db.Execute(insert, unieknummer, reserverings_datum, Session["opmerking"], Session["incheck_datum"], Session["uitcheck_datum"], Session["aantal_volwassenen"], Session["aantal_kinderen"], Session["huisdier"], unieknummer, status, Session["prijs"]);
 
         Response.Redirect("ReservationComplete.cshtml?order=complete");
     }
