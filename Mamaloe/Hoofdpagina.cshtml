@@ -88,6 +88,7 @@
                 grid.Column("incheck_datum"),
                 grid.Column("uitcheck_datum")
                 ))
+                    <br /> 
                     <a class="btn btn-warning" href="Reservation.cshtml">Reserveer</a>
                     @* Knop om naar de reserveringspagina te gaan. *@
 
@@ -127,13 +128,14 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h4 class="">Bereken hier uw prijs:</h4>
-                                        <form method = "post" >
+                                        <h6 class="">Let op! Er kunnen maximaal 4 personen in de caravan.  </h6>
+                                        <form method="post" id="form" action="">
                                             Volwassenen:
-                                            <input name = "txttwee" placeholder="Max 4." type="number" min="0" max="4" class="form-control" value="@Request.Form[" txttwee"]" />
+                                            <input name = "txttwee" placeholder="Max 4." type="number" min="0" max="4" class="form-control" value="@Request.Form["txttwee"]" />
                                             Kinderen:
-                                            <input name = "txtdrie" placeholder="Max 3." type="number" min="0" max="3" class="form-control" value="@Request.Form[" txtdrie"]" />
+                                            <input name = "txtdrie" placeholder="Max 3." type="number" min="0" max="3" class="form-control" value="@Request.Form["txtdrie"]" />
                                             Nachten:
-                                            <input name = "txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form[" txteen"]" />
+                                            <input name = "txteen" placeholder="aantal" type="text" class="form-control" value="@Request.Form["txteen"]" />
                                             <input type = "text" name="prijs" class="form-control" value=€@result readonly>
                 @* Invoer voor het berekenen van de totaalprijs, met aantal nachten en aantal personen. *@
                                             <br>
@@ -148,7 +150,7 @@
                                 <h3> Omgeving</h3>
                 @* Kopje met bijbehoorende tekst eronder. *@
                                 <p>
-                                    Rijs is een dorp in de gemeente De Friese Meren, in de Nederlandse provincie Friesland.Het ligt ten zuidoosten van Stavoren en Bakhuizen, aan de weg Oudemirdum - Hemelum.Het dorp ligt aan de noordoostkant van het Rijsterbos vlakbij het IJsselmeer.
+                                    Rijs is een dorp in de gemeente De Friese Meren, in de Nederlandse provincie Friesland. Het ligt ten zuidoosten van Stavoren en Bakhuizen, aan de weg Oudemirdum - Hemelum.Het dorp ligt aan de noordoostkant van het Rijsterbos vlakbij het IJsselmeer.
                                 </p>
                             </div>
                                 <div class="col-lg-4 p-3">
